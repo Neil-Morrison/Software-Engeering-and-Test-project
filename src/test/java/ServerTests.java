@@ -24,8 +24,6 @@ public class ServerTests {
     public void setup(){
         socketChannel = new Socket();
     }
-
-
     @Test
     public void TestConstructor(){
 

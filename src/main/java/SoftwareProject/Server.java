@@ -31,7 +31,6 @@ public class Server {
         try {
             CheckportNumber(port);
             SocketOpen(host,port);
-
             boolean running = true;
             while (running) {
                 System.out.println("Waiting for Client ...\r\n");

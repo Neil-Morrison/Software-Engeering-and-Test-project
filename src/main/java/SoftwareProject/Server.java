@@ -6,31 +6,34 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 23/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package main.java.SoftwareProject;
+package SoftwareProject;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 
 
 public class Server {
+
     private Socket socket;
     private int portnum;
     private String host;
     private DataInputStream input;
     private DataOutputStream output;
     private ServerSocket server;
-    public Server(Socket sock, String host, int port){
+
+    public Server(Socket sock, String host, int port) {
         this.socket = sock;
         this.portnum = port;
         this.host = host;
-        try {
-            CheckportNumber(port);
-            SocketOpen(host,port);
+    }
+
+    public void Start(){
+         try {
+            CheckportNumber(portnum);
+            SocketOpen(host, portnum);
             boolean running = true;
             while (running) {
                 System.out.println("Waiting for Client ...\r\n");
@@ -42,6 +45,7 @@ public class Server {
             ex.printStackTrace();
         }
     }
+
     public void CheckportNumber(int port) {
         try {
             Socket sock = new Socket("localhost",port);
@@ -52,6 +56,7 @@ public class Server {
         }
 
     }
+
     public void SocketOpen(String host, int port)  {
         try {
             Socket sock = new Socket(host,port);
@@ -60,12 +65,15 @@ public class Server {
             throw new IllegalArgumentException("Socket wont open");
         }
     }
+
     public void SocketSend(Socket socketChannel) throws IOException {
        input = new DataInputStream(socketChannel.getInputStream());
     }
+
     public void SocketReceive(Socket socketChannel) throws IOException {
         output = new DataOutputStream(socketChannel.getOutputStream());
     }
+
     public void SocketClose(Socket socketChannel)   {
         try {
             socketChannel.close();
@@ -73,6 +81,7 @@ public class Server {
             throw new IllegalArgumentException("An error occurred when closing the socket");
         }
     }
+
     public Socket getSocket() {
         return socket;
     }

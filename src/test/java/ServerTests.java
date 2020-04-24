@@ -57,7 +57,15 @@ public class ServerTests {
         assertTrue(server.isPortcheck());
     }
 
-
+    @DisplayName("Sockets Open")
+    @Test
+    public void TestServerOpen() {
+        Server server = new Server(socketChannel,"localhost",3000);
+        server.SocketOpen(server.getHost(), server.getPortnum());
+        assertTrue(server.getSocketOpen());
+        assertEquals("localhost", server.getHost());
+        assertEquals(3000, server.getPortnum());
+    }
 
 }
 

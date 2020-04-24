@@ -66,6 +66,13 @@ public class ServerTests {
         assertEquals("localhost", server.getHost());
         assertEquals(3000, server.getPortnum());
     }
+    @DisplayName("Socket closes")
+    @Test
+    public void TestSocketTeardown() {
+        Server server = new Server(socketChannel,"localhost",3000);
+        server.SocketClose(socketChannel);
+        assertTrue(server.getclosed());
+    }
 
 }
 

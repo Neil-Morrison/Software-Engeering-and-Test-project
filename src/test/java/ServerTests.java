@@ -49,6 +49,13 @@ public class ServerTests {
         assertEquals("localhost", server.getHost());
         assertEquals(3000, server.getPortnum());
     }
+    @DisplayName("Check port")
+    @Test
+    public void TestPort() {
+        Server server = new Server(socketChannel,"localhost",3000);
+        server.CheckportNumber(server.getPortnum());
+        assertTrue(server.isPortcheck());
+    }
 
 
 

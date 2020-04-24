@@ -9,44 +9,48 @@
 
 import SoftwareProject.Server;
 import org.junit.jupiter.api.*;
-import java.net.Socket;
+
+import java.io.IOException;
+import java.net.ServerSocket;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ServerTests {
-    private Socket socketChannel;
+
+    private  ServerSocket socketChannel;
 
     @BeforeAll
-    public static void setup(){
-        Socket socketChannel = new Socket();
+    static void startTests(){
+        System.out.println("Beginning Tests");
     }
 
+    @AfterAll
+    static void finishedTest(){
+        System.out.println("Finished Tests");
+    }
+
+    @BeforeEach
+    void init(TestInfo testinfo, TestReporter testreporter){
+        testreporter.publishEntry(("Testing " + testinfo.getDisplayName()));
+    }
+
+    @BeforeEach
+    public void Setup() throws IOException {
+        ServerSocket socket = new ServerSocket();
+        socketChannel = socket;
+    }
+
+    @DisplayName("Constructor")
     @Test
-    public void TestConstructor(){
+    public void TestConstructor() throws IOException {
         Server server = new Server(socketChannel,"localhost",3000);
-        System.out.println(server.getSocket());
-        //assertEquals(, server.getSocket());
+        assertTrue(server.isSocket());
         assertEquals("localhost", server.getHost());
         assertEquals(3000, server.getPortnum());
-
     }
-//    @Test
-//    public void TestPortAvailable(){
-//
-//    }
-//    @Test
-//    public void TestServerOpen(){
-//
-//    }
-//    @Test
-//    public void TestBind(){
-//
-//    }
-//    @Test
-//    public void TestSocketTeardown(){
-//
-//    }
+
+
 
 }
 

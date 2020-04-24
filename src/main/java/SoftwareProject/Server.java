@@ -8,8 +8,6 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,22 +15,41 @@ import java.net.Socket;
 
 public class Server {
 
-    private Socket socket;
+    private ServerSocket socket;
     private int portnum;
     private String host;
-    private DataInputStream input;
-    private DataOutputStream output;
     private ServerSocket server;
+    private boolean closed;
+    private boolean socketOpen;
+    private boolean isSocket;
+    private boolean portcheck;
 
-    public Server(Socket sock, String host, int port) {
-        this.socket = sock;
-        this.portnum = port;
-        this.host = host;
+
+    public Server(ServerSocket sock, String host, int port) {
+        if (!sock.isClosed()){
+            this.socket = sock;
+            this.isSocket = true;
+        }
+        else{
+            throw new IllegalArgumentException("Socket is already connected");
+        }
+        if (!(port <= 0) && port < 65000) {
+            this.portnum = port;
+        }
+        else{
+            throw new IllegalArgumentException("the port number has to be between 1 and 65000");
+        }
+        if (host.equals("localhost")){
+            this.host = host;
+        }
+        else{
+            throw new IllegalArgumentException("Host name must be localhost");
+        }
+        this.closed = false;
     }
 
     public void Start(){
-         try {
-            CheckportNumber(portnum);
+        try {
             SocketOpen(host, portnum);
             boolean running = true;
             while (running) {
@@ -48,9 +65,9 @@ public class Server {
 
     public void CheckportNumber(int port) {
         try {
-            Socket sock = new Socket("localhost",port);
-            sock.close();
-
+            socket = new ServerSocket(port);
+            socket.close();
+            portcheck = true;
         }catch (Exception e){
             throw new  IllegalArgumentException("Port already in use");
         }
@@ -59,52 +76,46 @@ public class Server {
 
     public void SocketOpen(String host, int port)  {
         try {
-            Socket sock = new Socket(host,port);
-            socket = sock;
+            socket = new ServerSocket(port);
+            socketOpen = true;
         } catch (IOException e) {
+            System.out.println(e);
             throw new IllegalArgumentException("Socket wont open");
         }
     }
 
-    public void SocketSend(Socket socketChannel) throws IOException {
-       input = new DataInputStream(socketChannel.getInputStream());
-    }
-
-    public void SocketReceive(Socket socketChannel) throws IOException {
-        output = new DataOutputStream(socketChannel.getOutputStream());
-    }
-
-    public void SocketClose(Socket socketChannel)   {
+    public void SocketClose(ServerSocket socketChannel)   {
         try {
             socketChannel.close();
+            closed = true;
         }catch(Exception e){
             throw new IllegalArgumentException("An error occurred when closing the socket");
         }
     }
 
-    public Socket getSocket() {
-        return socket;
+    public boolean getSocketOpen() {
+        return socketOpen;
     }
 
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
 
     public int getPortnum() {
         return portnum;
     }
 
-    public void setPortnum(int portnum) {
-        this.portnum = portnum;
-    }
 
     public String getHost() {
         return host;
     }
 
-    public void setHost(String host) {
-        this.host = host;
+    public boolean getclosed() {
+        return closed;
+    }
+    public boolean isSocket() {
+        return isSocket;
+    }
+
+    public boolean isPortcheck() {
+        return portcheck;
     }
 
 }
-

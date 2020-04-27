@@ -28,6 +28,8 @@ public class Server {
     private boolean socketOpen;
     private boolean isSocket;
     private boolean portcheck;
+    private boolean started;
+    public Socket incomingsocket;
 
 
     public Server(ServerSocket sock, String host, int port) {
@@ -52,19 +54,19 @@ public class Server {
         }
         this.closed = false;
         this.bound = false;
+        this.started = false;
     }
 
     public void Start(){
-        Socket s = null;
+        ServerSocket s = null;
         try {
             SocketOpen(portnum);
             boolean running = true;
             System.out.println("Waiting for Client ...\r\n");
             while (running) {
-                s = server.accept();
+                incomingsocket = s.accept();
                 System.out.println("New Socket: " + s.toString());
-                Thread t = new ClientHandler(s);
-                t.start();
+                NewThread();
             }
         }catch (Exception ex) {
             SocketClose(socket);
@@ -110,6 +112,17 @@ public class Server {
             throw new IllegalArgumentException("An error occurred when closing the socket");
         }
     }
+    public void NewThread(){
+        try{
+            Thread t = new ClientHandler(incomingsocket);
+            t.start();
+            started = true;
+        }catch (Exception e){
+            throw new IllegalArgumentException("Thread Cant start");
+        }
+
+
+    }
 
     public boolean getSocketOpen() {
         return socketOpen;
@@ -138,6 +151,8 @@ public class Server {
     public boolean isBound() {
         return bound;
     }
+
+    public boolean isStarted() { return started; }
 
 
 }

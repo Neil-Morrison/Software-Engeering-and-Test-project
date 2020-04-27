@@ -12,6 +12,7 @@ import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,6 +85,14 @@ public class ServerTests {
         Server server = new Server(socketChannel,"localhost",3000);
         server.SocketClose(socketChannel);
         assertTrue(server.getclosed());
+    }
+    @DisplayName("Thread Start")
+    @Test
+    @Order(5)
+    public void TestThreadStart() {
+        Server server = new Server(socketChannel,"localhost",3000);
+        server.NewThread();
+        assertTrue(server.isStarted());
     }
 }
 

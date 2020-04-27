@@ -39,9 +39,11 @@ public class ClientHandlerTests {
         assertEquals("localhost", server.getHost());
         assertEquals(3000, server.getPortnum());
     }
+    @DisplayName("Test Quit")
     @Test
     @Order(2)
     public void TestQuit(){
+        //If "quit" is sent across the server will recognise and terminate server
         Server server = new Server(socketChannel,"localhost",3000);
         ClientHandler cl = new ClientHandler(s);
         cl.CheckQuit("quit");

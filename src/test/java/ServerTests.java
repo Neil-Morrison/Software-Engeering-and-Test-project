@@ -15,7 +15,6 @@ import java.net.ServerSocket;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class ServerTests {
 
     private  ServerSocket socketChannel;
@@ -43,6 +42,7 @@ public class ServerTests {
 
     @DisplayName("Constructor")
     @Test
+    @Order(1)
     public void TestConstructor() throws IOException {
         Server server = new Server(socketChannel,"localhost",3000);
         assertTrue(server.isSocket());
@@ -51,6 +51,7 @@ public class ServerTests {
     }
     @DisplayName("Check port")
     @Test
+    @Order(2)
     public void TestPort() {
         Server server = new Server(socketChannel,"localhost",3000);
         server.CheckportNumber(server.getPortnum());
@@ -59,20 +60,30 @@ public class ServerTests {
 
     @DisplayName("Sockets Open")
     @Test
+    @Order(3)
     public void TestServerOpen() {
         Server server = new Server(socketChannel,"localhost",3000);
-        server.SocketOpen(server.getHost(), server.getPortnum());
+        server.SocketOpen(server.getPortnum());
         assertTrue(server.getSocketOpen());
-        assertEquals("localhost", server.getHost());
-        assertEquals(3000, server.getPortnum());
+
+    }
+    @DisplayName("Socket Bound")
+    @Test
+    @Order(4)
+    public void TestSocketBound() {
+        Server server = new Server(socketChannel,"localhost",3000);
+        server.SocketBound(socketChannel,"localhost",3000);
+        assertTrue(server.isBound());
+
+
     }
     @DisplayName("Socket closes")
     @Test
+    @Order(5)
     public void TestSocketTeardown() {
         Server server = new Server(socketChannel,"localhost",3000);
         server.SocketClose(socketChannel);
         assertTrue(server.getclosed());
     }
-
 }
 

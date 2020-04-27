@@ -9,17 +9,22 @@
 package SoftwareProject;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
 
 
 public class Server {
+    static ArrayList<Socket> sock = new ArrayList <Socket> ();
 
     private ServerSocket socket;
     private int portnum;
     private String host;
     private ServerSocket server;
     private boolean closed;
+    private boolean bound;
     private boolean socketOpen;
     private boolean isSocket;
     private boolean portcheck;
@@ -46,21 +51,26 @@ public class Server {
             throw new IllegalArgumentException("Host name must be localhost");
         }
         this.closed = false;
+        this.bound = false;
     }
 
     public void Start(){
+        Socket s = null;
         try {
-            SocketOpen(host, portnum);
+            SocketOpen(portnum);
             boolean running = true;
+            System.out.println("Waiting for Client ...\r\n");
             while (running) {
-                System.out.println("Waiting for Client ...\r\n");
-                Socket socketChannel = server.accept();
-                System.out.println("New Socket: " + socketChannel.toString());
+                s = server.accept();
+                System.out.println("New Socket: " + s.toString());
+                Thread t = new ClientHandler(s);
+                t.start();
             }
         }catch (Exception ex) {
             SocketClose(socket);
             ex.printStackTrace();
         }
+
     }
 
     public void CheckportNumber(int port) {
@@ -74,13 +84,21 @@ public class Server {
 
     }
 
-    public void SocketOpen(String host, int port)  {
+    public void SocketOpen(int port)  {
         try {
             socket = new ServerSocket(port);
             socketOpen = true;
         } catch (IOException e) {
             System.out.println(e);
             throw new IllegalArgumentException("Socket wont open");
+        }
+    }
+    public void SocketBound(ServerSocket socketChannel,String host,int port)   {
+        try {
+            socketChannel.bind(new InetSocketAddress(host,port));
+            bound = true;
+        }catch(Exception e){
+            throw new IllegalArgumentException("An error occurred when closing the socket");
         }
     }
 
@@ -117,5 +135,9 @@ public class Server {
     public boolean isPortcheck() {
         return portcheck;
     }
+    public boolean isBound() {
+        return bound;
+    }
+
 
 }

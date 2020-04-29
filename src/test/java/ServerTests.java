@@ -7,6 +7,7 @@
 //+ .DATE: 23/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+import SoftwareProject.ClientHandler;
 import SoftwareProject.Server;
 import org.junit.jupiter.api.*;
 
@@ -17,12 +18,21 @@ import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ServerTests {
-
-    private  ServerSocket socketChannel;
+    private static Server server;
+    private static ServerSocket socketChannel;
 
     @BeforeAll
     static void startTests(){
         System.out.println("Beginning Tests");
+
+        ServerSocket socket = null;
+        try {
+            socket = new ServerSocket();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        socketChannel = socket;
+        server = new Server(socketChannel,"localhost",3000);
     }
 
     @AfterAll
@@ -37,15 +47,16 @@ public class ServerTests {
 
     @BeforeEach
     public void Setup() throws IOException {
-        ServerSocket socket = new ServerSocket();
-        socketChannel = socket;
+//        ServerSocket socket = new ServerSocket();
+//        socketChannel = socket;
     }
+
 
     @DisplayName("Constructor")
     @Test
     @Order(1)
     public void TestConstructor() throws IOException {
-        Server server = new Server(socketChannel,"localhost",3000);
+//        Server server = new Server(socketChannel,"localhost",3000);
         assertTrue(server.isSocket());
         assertEquals("localhost", server.getHost());
         assertEquals(3000, server.getPortnum());
@@ -54,16 +65,17 @@ public class ServerTests {
     @Test
     @Order(2)
     public void TestPort() {
-        Server server = new Server(socketChannel,"localhost",3000);
+//        Server server = new Server(socketChannel,"localhost",3000);
         server.CheckportNumber(server.getPortnum());
         assertTrue(server.isPortcheck());
+
     }
 
     @DisplayName("Sockets Open")
     @Test
     @Order(3)
     public void TestServerOpen() {
-        Server server = new Server(socketChannel,"localhost",3000);
+//        Server server = new Server(socketChannel,"localhost",3000);
         server.SocketOpen(server.getPortnum());
         assertTrue(server.getSocketOpen());
 
@@ -72,9 +84,9 @@ public class ServerTests {
     @Test
     @Order(4)
     public void TestSocketBound() {
-        Server server = new Server(socketChannel,"localhost",3000);
-        server.SocketBound(socketChannel,"localhost",3000);
-        assertTrue(server.isBound());
+//        Server server = new Server(socketChannel,"localhost",3000);
+        //server.SocketBound(socketChannel,"localhost",3000);
+        assertTrue(server.getBound());
 
 
     }
@@ -82,7 +94,7 @@ public class ServerTests {
     @Test
     @Order(5)
     public void TestSocketTeardown() {
-        Server server = new Server(socketChannel,"localhost",3000);
+//        Server server = new Server(socketChannel,"localhost",3000);
         server.SocketClose(socketChannel);
         assertTrue(server.getclosed());
     }
@@ -90,9 +102,19 @@ public class ServerTests {
     @Test
     @Order(5)
     public void TestThreadStart() {
-        Server server = new Server(socketChannel,"localhost",3000);
+//        Server server = new Server(socketChannel,"localhost",3000);
         server.NewThread();
         assertTrue(server.isStarted());
+    }
+    @DisplayName("Thread Stop")
+    @Test
+    @Order(5)
+    public void TestThreadStop() {
+//        Server server = new Server(socketChannel,"localhost",3000);
+//        server.NewThread();
+        server.StopThread();
+        assertFalse(ClientHandler.isThreadrun());
+
     }
 }
 

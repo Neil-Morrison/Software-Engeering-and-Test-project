@@ -1,3 +1,11 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .Project: Messaging APP+
+//+ .LANGUAGE: Java +
+//+ .FRAMEWORK: Maven +
+//+ .AUTHOR: Denis Whelan +
+//+ .COLLEGE: Galway-Mayo institute of Technology +
+//+ .DATE: 24/04/2020 +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import SoftwareProject.ClientHandler;
 import SoftwareProject.Server;
 import org.junit.jupiter.api.*;

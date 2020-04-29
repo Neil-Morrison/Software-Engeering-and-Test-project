@@ -8,7 +8,7 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject;
 
-import org.junit.Test;
+//import org.junit.Test;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,12 +20,12 @@ public class UserTests {
         System.out.println("Starting tests for User Class");
     }
 
-    @org.junit.Test
+   @Test
     public void GoodConstructor(){
         User user = new User("John","ABCD","john@gmail.com", 858451443L);
         assertEquals(User.class, user.getClass());
     }
-    @org.junit.Test
+    @Test
     public void NoNameConstructor(){
         boolean thrown = false;
         try{
@@ -35,7 +35,7 @@ public class UserTests {
         }
         assertEquals(true,thrown);
     }
-    @org.junit.Test
+    @Test
     public void NoPasswordConstructor(){
         boolean thrown = false;
         try{
@@ -45,7 +45,7 @@ public class UserTests {
         }
         assertEquals(true,thrown);
     }
-    @org.junit.Test
+    @Test
     public void NoEmailConstructor(){
         boolean thrown = false;
         try{

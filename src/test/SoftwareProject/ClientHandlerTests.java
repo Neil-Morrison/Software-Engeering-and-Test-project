@@ -1,4 +1,4 @@
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .Project: Messaging APP+
 //+ .LANGUAGE: Java +
 //+ .FRAMEWORK: Maven +
@@ -6,8 +6,6 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 24/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-import SoftwareProject.ClientHandler;
-import SoftwareProject.Server;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -15,6 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 public class ClientHandlerTests {
     private  ServerSocket socketChannel;
     private Socket s;

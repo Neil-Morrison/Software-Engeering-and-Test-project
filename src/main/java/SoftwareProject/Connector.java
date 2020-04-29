@@ -22,8 +22,6 @@ public class Connector {
                             "VALUES ( ? , ? ,?,?);" );
             sqlFind = connection.prepareStatement(
                     "SELECT * from users WHERE users.name = ? ;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-
     }
     private void connect() throws Exception
     {

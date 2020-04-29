@@ -11,7 +11,6 @@ package ClientTests;
 import SoftwareProject.Client.LoginClient;
 import org.junit.jupiter.api.*;
 import javax.swing.*;
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,14 +34,14 @@ public class LoginTests {
         testreporter.publishEntry(("Testing " + testinfo.getDisplayName()));
     }
     @BeforeEach
-    public void Setup(){
+    void Setup(){
         frame = new JFrame("Messaging App");
         path = "src\\main\\resources\\pictures\\background.png";
     }
     @DisplayName("Constructor for login page")
     @Test
     @Order(1)
-    public void TestConstructor() {
+    void TestConstructor() {
         LoginClient login = new LoginClient(frame, 400, 600, path);
         assertEquals(frame, login.getWindow());
         assertEquals(400, login.getWidth());
@@ -51,17 +50,28 @@ public class LoginTests {
     }
     @DisplayName("Testing set button name")
     @Test
-    @Order(1)
-    public void TestButton() {
+    @Order(2)
+    void TestButton() {
         LoginClient login = new LoginClient(frame, 400, 600, path);
         login.setButtonName("Login");
         assertTrue(login.buttonName);
     }
 
+
+    @DisplayName("Font method")
+    @Test
+    @Order(3)
+    void TestGetFont() {
+        LoginClient login = new LoginClient(frame, 400, 600, path);
+        login.getFont("Times New Roman", 25);
+        assertEquals("Times New Roman", login.getFontText());
+        assertEquals(25, login.getFont_size());
+    }
+
     @DisplayName("Check Connection successful")
     @Test
-    @Order(1)
-    public void TestConnect() {
+    @Order(4)
+    void TestConnect() {
         LoginClient login = new LoginClient(frame, 400, 600, path);
         login.connect("192.168.1.13", 2003);
         assertEquals("192.168.1.13", login.getServerIp());
@@ -69,20 +79,10 @@ public class LoginTests {
         assertTrue(login.isConnection());
     }
 
-    @DisplayName("Font method")
-    @Test
-    @Order(1)
-    public void TestGetFont() {
-        LoginClient login = new LoginClient(frame, 400, 600, path);
-        login.getFont("Times New Roman", 25);
-        assertEquals("Times New Roman", login.getFontText());
-        assertEquals(25, login.getFont_size());
-    }
-
     @DisplayName("Check Connection closed successful")
     @Test
-    @Order(1)
-    public void TestDisconnect() {
+    @Order(5)
+    void TestDisconnect() {
           LoginClient login = new LoginClient(frame, 400, 600, path);
           login.disconnect();
           assertTrue(login.Sockclosed);

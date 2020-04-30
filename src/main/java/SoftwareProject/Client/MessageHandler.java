@@ -1,3 +1,11 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .Project: Messaging APP                                            +
+//+ .LANGUAGE: Java                                                    +
+//+ .FRAMEWORK: Maven                                                  +
+//+ .AUTHOR: Neil Morrison                                             +
+//+ .COLLEGE: Galway-Mayo institute of Technology                      +
+//+ .DATE: 01/05/2020                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject.Client;
 
 import javax.swing.*;

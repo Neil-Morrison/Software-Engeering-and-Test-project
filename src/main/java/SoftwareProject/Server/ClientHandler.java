@@ -14,9 +14,15 @@ import java.util.Scanner;
 
 public class ClientHandler extends Thread implements Runnable {
     private boolean quit;
+    private Connector connector;
     final Socket s;
     static volatile boolean threadrun = true;
 
+    public ClientHandler(Socket s, Connector connector) {
+        this.s = s;
+        this.quit = false;
+        this.connector = connector;
+    }
     public ClientHandler(Socket s) {
         this.s = s;
         this.quit = false;
@@ -26,8 +32,8 @@ public class ClientHandler extends Thread implements Runnable {
     public void run() {
         while(threadrun) {
             String clientResponse = "";
-            //System.out.println("ClientHandler Started for " + this.socketChannel+ Thread.currentThread());
-            //System.out.println("This is whats connected"+ChatServer.sock);
+            String response[] = null;
+            //Not sure what this does, currently not entering it with one client
             int j = 0;
             for (Socket sc : Server.sock) {
                 System.out.println("Connection No: " + (j + 1));
@@ -36,29 +42,22 @@ public class ClientHandler extends Thread implements Runnable {
             }
 
             int count = 1;
-            Scanner scanner = new Scanner(System.in);
             boolean running = true;
-            //HelperMethods.sendMessage(socketChannel, "Hello From Server");
-            if (Server.sock.size() == 1) {
-                try {
-                    HelperMethods.sendMessage(s, "Hello From Server");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+
             while (running) {
-
                 if (s != null) {
-                    // while (running) {
-
-                    try {
-                        clientResponse = HelperMethods.receiveMessage(s);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    while(clientResponse.equalsIgnoreCase("")) {
+                        try {
+                            clientResponse = HelperMethods.receiveMessage(s);
+                            response = clientResponse.split("\\+");
+                        } catch (IOException e) {
+                            System.err.println("No response");
+                        }
                     }
+                    System.out.println(clientResponse);
                     CheckQuit(clientResponse);
                     System.out.println(clientResponse);
-                    if (clientResponse.equalsIgnoreCase("quit")) {
+                    if (response[0].equalsIgnoreCase("quit")) {
                         try {
                             HelperMethods.sendMessage(s, "Server terminating\r\nSocket Channel Closed");
                         } catch (IOException e) {
@@ -70,7 +69,7 @@ public class ClientHandler extends Thread implements Runnable {
                             e.printStackTrace();
                         }
                         running = false;
-                    } else {
+                    } else if(response[0].equalsIgnoreCase("message")) {
                         for (Socket sc : Server.sock) {
                             if (sc != s) {
                                 try {
@@ -84,8 +83,23 @@ public class ClientHandler extends Thread implements Runnable {
                             }
                         }
 
+                    } else if(response[0].equalsIgnoreCase("login")){
+                        User attemptedUser = connector.findUser(response[1]);
+                        if(attemptedUser.getPassword().equals(response[2])){
+                            try {
+                                HelperMethods.sendMessage(s,"Access Granted\n");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            try{
+                                HelperMethods.sendMessage(s,"Access Denied");
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
                     }
-
+                clientResponse = "";
                 }
             }
             System.out.println("ClientHandler Terminated for " + this.s);

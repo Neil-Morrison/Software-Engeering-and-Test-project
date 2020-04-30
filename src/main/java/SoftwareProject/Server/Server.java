@@ -30,12 +30,13 @@ public class Server {
     private boolean started;
     private boolean stopped;
     private boolean running = true;
+    private Connector connector;
 
     public Socket incomingsocket;
     private Thread t;
 
 
-    public Server(){}
+
     public Server(ServerSocket sock, String host, int port) {
         if (!sock.isClosed()) {
             this.socket = sock;
@@ -57,22 +58,17 @@ public class Server {
         this.bound = false;
         this.started = false;
         this.stopped = false;
-//        try {
-//            socket.bind(new InetSocketAddress(host, port));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            connector = new Connector();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void Start() {
-        //ServerSocket s = null;
         try {
+            CheckportNumber(portnum);
             SocketOpen(portnum);
-            try {
-            socket.bind(new InetSocketAddress(host, portnum));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
             System.out.println("Waiting for Client ...\r\n");
             while (running) {
                 incomingsocket = socket.accept();
@@ -88,11 +84,9 @@ public class Server {
 
     public void CheckportNumber(int port) {
         try {
-            //socket = new ServerSocket(port);
-
-             port = socket.getLocalPort();
+            port = socket.getLocalPort();
             System.out.println(port);
-            socket.close();
+//            socket.close();
             portcheck = true;
         } catch (Exception e) {
             throw new IllegalArgumentException("Port already in use");
@@ -101,19 +95,19 @@ public class Server {
     }
 
     public void SocketOpen(int port) {
-        try {
-            socket = new ServerSocket();
-//            socket.bind(new InetSocketAddress(port));
+       // try {
+            //socket = new ServerSocket();
+            SocketBound(socket,host,port);
             socketOpen = true;
-        } catch (IOException e) {
-            System.out.println(e);
-            throw new IllegalArgumentException("Socket wont open");
-        }
+        //} catch (IOException e) {
+         //   System.out.println(e);
+         //   throw new IllegalArgumentException("Socket wont open");
+       // }
     }
 
     public void SocketBound(ServerSocket socketChannel, String host, int port) {
         try {
-//            socketChannel.bind(new InetSocketAddress(host, port));
+            socketChannel.bind(new InetSocketAddress(host, port));
             bound = true;
         } catch (Exception e) {
             throw new IllegalArgumentException("An error occurred when closing the socket");
@@ -131,7 +125,8 @@ public class Server {
 
     public void NewThread() {
         try {
-            t = new ClientHandler(incomingsocket);
+            System.out.println("Starting New Thread");
+            t = new ClientHandler(incomingsocket, connector);
             t.start();
             started = true;
         } catch (Exception e) {

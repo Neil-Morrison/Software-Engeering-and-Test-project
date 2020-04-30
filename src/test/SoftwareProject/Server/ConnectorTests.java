@@ -6,7 +6,7 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 27/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject;
+package SoftwareProject.Server;
 
 import org.junit.jupiter.api.*;
 

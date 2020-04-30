@@ -16,7 +16,7 @@ public class Main {
         JFrame frame = new JFrame("Messaging App");
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        String path = "src\\main\\resources\\pictures\\background.png";
+        String path = "src/main/resources/pictures/background.png";
         new LoginClient(frame, 400, 600, path).run();
 
     }

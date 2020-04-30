@@ -61,10 +61,10 @@ public class LoginClient extends GuiHolder{
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                connect("192.168.1.13", 2003);
+                connect("localhost", 6000);
                 String username = userFeild.getText();
                 String pass = passFeild.getText();
-                String message = username + "+" + pass;
+                String message = "login+" + username + "+" + pass+"\n";
                 SendReceive.sendMessage(socket, message);
                 String rec = SendReceive.receiveMessage(socket);
                 if (rec.equals("Access Granted")){
@@ -87,13 +87,13 @@ public class LoginClient extends GuiHolder{
         window.setVisible(true);
     }
     public void connect(String ServerAddress, int ServerPort) {
-        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
-        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
-        if (ServerAddress.matches(pattern)){
+//        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
+//        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
+//        if (ServerAddress.matches(pattern)){
             serverIp = ServerAddress;
-        }else{
-            throw new IllegalArgumentException("This doesn't match ip address pattern");
-        }
+//        }else{
+//            throw new IllegalArgumentException("This doesn't match ip address pattern");
+//        }
         if (ServerPort > 0 && ServerPort < 65000){
             portnum = ServerPort;
         }else{
@@ -132,8 +132,8 @@ public class LoginClient extends GuiHolder{
         passText = new JLabel("Password");
         title = new JLabel("Login Page");
         title.setForeground(orange);
-        Font font = getFont("Times New Roman", 25);
-        title.setFont(font);
+//        Font font = getFont("Times New Roman", 25);
+//        title.setFont(font);
         title.setBounds(120,50, 150,50);
         userText.setBounds(50, 150, 60, 35);
         userFeild.setBounds(50, 180, 300, 35);

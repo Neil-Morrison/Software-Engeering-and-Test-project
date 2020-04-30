@@ -6,9 +6,10 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 28/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject;
+package SoftwareProject.Server;
 
 //import org.junit.Test;
+import SoftwareProject.Server.User;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

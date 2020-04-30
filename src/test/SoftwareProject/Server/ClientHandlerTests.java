@@ -1,4 +1,4 @@
-package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package SoftwareProject.Server;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .Project: Messaging APP+
 //+ .LANGUAGE: Java +
 //+ .FRAMEWORK: Maven +
@@ -51,7 +51,7 @@ public class ClientHandlerTests {
     @Order(2)
     public void TestQuit(){
         //If "quit" is sent across the server will recognise and terminate server
-        Server server = new Server(socketChannel,"localhost",3000);
+        Server server = new Server(socketChannel,"localhost",6000);
         ClientHandler cl = new ClientHandler(s);
         cl.CheckQuit("quit");
         assertTrue(cl.isQuit());

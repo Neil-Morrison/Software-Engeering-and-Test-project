@@ -1,4 +1,4 @@
-package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package SoftwareProject.Server;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .Project: Messaging APP+
 //+ .LANGUAGE: Java +
 //+ .FRAMEWORK: Maven +
@@ -7,13 +7,15 @@ package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .DATE: 23/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.*;
+import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@FixMethodOrder(MethodSorters.DEFAULT)
 public class ServerTests {
     private static Server server;
     private static ServerSocket socketChannel;

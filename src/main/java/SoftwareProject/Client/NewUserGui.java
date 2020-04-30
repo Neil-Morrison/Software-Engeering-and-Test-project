@@ -18,9 +18,9 @@ import java.util.List;
 
 public class NewUserGui extends JFrame{
 
-    private JTextField userField, passField, emailField;
+    private JTextField userField, passField, emailField,phoneField;
     private Button apply;
-    private JLabel user, pass, email ,background;
+    private JLabel user, pass, email ,phone, background;
     private Socket sock;
 
     public NewUserGui(Socket sock) {
@@ -39,6 +39,8 @@ public class NewUserGui extends JFrame{
         background.add(passField);
         background.add(email);
         background.add(emailField);
+        background.add(phone);
+        background.add(phoneField);
         background.add(apply);
         smallwindow.getContentPane().add(background);
         smallwindow.setVisible(true);
@@ -48,9 +50,11 @@ public class NewUserGui extends JFrame{
                 data.setUserData(userField.getText());
                 data.setUserData(passField.getText());
                 data.setUserData(emailField.getText());
+                data.setUserData(phoneField.getText());
                 List<String> Userlist = data.getUserData();
-                if (Userlist.size() >= 3) {
-                    SendReceive.sendList(sock, Userlist);
+                String NewUser = "NewUser+" + userField.getText() + "+" + passField.getText() + "+" + emailField.getText() + "+" + phoneField.getText() + "\n";
+                if (Userlist.size() >= 4) {
+                    SendReceive.sendMessage(sock, NewUser);
                     smallwindow.setVisible(false);
                 }else
                     JOptionPane.showConfirmDialog(smallwindow,"All fields must be filled in", "Error", -1);
@@ -61,6 +65,8 @@ public class NewUserGui extends JFrame{
         userField = new JTextField();
         passField = new JPasswordField();
         emailField = new JTextField();
+        phoneField = new JTextField();
+        phone = new JLabel("Phone");
         user = new JLabel("Username");
         pass = new JLabel("Password");
         email = new JLabel("Email");
@@ -68,9 +74,11 @@ public class NewUserGui extends JFrame{
         user.setBounds(15, 50, 80, 30);
         pass.setBounds(15,100, 80, 30);
         email.setBounds(15, 150, 80, 30);
+        phone.setBounds(15, 200, 80, 30);
         userField.setBounds(90, 50, 180, 30);
         passField.setBounds(90,100, 180, 30);
         emailField.setBounds(90, 150, 180, 30);
-        apply.setBounds(120,220, 50, 30);
+        phoneField.setBounds(90, 200, 180, 30);
+        apply.setBounds(120,270, 50, 30);
     }
 }

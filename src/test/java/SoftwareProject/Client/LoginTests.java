@@ -6,9 +6,8 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
 //+ .DATE: 27/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package ClientTests;
+package SoftwareProject.Client;
 
-import SoftwareProject.Client.LoginClient;
 import org.junit.jupiter.api.*;
 import javax.swing.*;
 

@@ -4,58 +4,67 @@
 //+ .FRAMEWORK: Maven                                                  +
 //+ .AUTHOR: Neil Morrison                                             +
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
-//+ .DATE: 29/04/2020                                                  +
+//+ .DATE: 30/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package ClientTests;
+package SoftwareProject.Client;
 
-import SoftwareProject.Client.SetNewUserData;
 import org.junit.jupiter.api.*;
-
+import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
 
+import static SoftwareProject.Client.SendReceive.sentList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+public class SendReceiveTests {
 
-public class SetNewUserDataTests {
-
-    private SetNewUserData data;
+    private Socket socket;
+    private SendReceive sendreceive;
 
     @BeforeAll
     static void startTests(){
-        System.out.println("Beginning Tests for SetNewUserData");
+        System.out.println("Beginning Tests for SendReceive Message");
     }
 
     @AfterAll
     static void finishedTest(){
-        System.out.println("Finished Tests for SetNewUserData");
+        System.out.println("Finished Tests for SendReceive Message");
     }
 
     @BeforeEach
     void init(TestInfo testinfo, TestReporter testreporter){
         testreporter.publishEntry(("Testing " + testinfo.getDisplayName()));
     }
+
     @BeforeEach
     void Setup(){
-      data = new SetNewUserData();
+        socket = new Socket();
+        sendreceive = new SendReceive();
     }
-    @DisplayName("Adding Data To List")
+
+    @DisplayName("Sending Message")
     @Test
     @Order(1)
-    void TestAddingDataToList() {
-        data.setUserData("Denise");
-        data.setUserData("Thomaseena");
-        List<String> userdata = data.getUserData();
-        assertEquals(2, userdata.size());
+    void TestSendingMessage() {
+        SendReceive.sendMessage(socket, "Hello Server");
+        assertTrue(SendReceive.sent);
     }
-    @DisplayName("Names are correct")
+
+    @DisplayName("Receiving Message")
     @Test
     @Order(2)
-    void TestCorrectstring() {
+    void TestReceivingMessage() {
+        SendReceive.receiveMessage(socket);
+        assertTrue(SendReceive.received);
+    }
+
+    @DisplayName("Sending List")
+    @Test
+    @Order(3)
+    void TestReceivingList() {
         List<String> testing = Arrays.asList("Thomas", "Denis", "Neil");
-        data.setUserData("Thomas");
-        data.setUserData("Denis");
-        data.setUserData("Neil");
-        assertEquals(testing, data.getUserData());
+        SendReceive.sendList(socket, testing);
+        assertTrue(sentList);
     }
 }

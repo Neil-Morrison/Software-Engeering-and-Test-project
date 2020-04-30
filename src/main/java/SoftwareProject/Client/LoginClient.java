@@ -41,6 +41,26 @@ public class LoginClient extends GuiHolder{
             throw new IllegalArgumentException("Frame height must be 600");
         this.Mainframe = Mainframe;
     }
+    public LoginClient(JFrame frame,int frame_width, int frame_height, String path) {
+        if (frame != null)
+            window = frame;
+        else
+            throw new IllegalArgumentException("The JFrame must be swing object not null");
+        File tempFile = new File(path);
+        if (tempFile.exists())
+            image = path;
+        else
+            throw new IllegalArgumentException("Path does not exist for the background image for Login Frame");
+        if (!(frame_width > 400) && !(frame_width < 399))
+            width = frame_width;
+        else
+            throw new IllegalArgumentException("Frame width must be 400");
+        if (!(frame_height > 600) && !(frame_height < 599))
+            height = frame_height;
+        else
+            throw new IllegalArgumentException("Frame height must be 600");
+        this.Mainframe = Mainframe;
+    }
     public LoginClient() { }
     public void run(){
         setSize();

@@ -20,11 +20,13 @@ import static java.lang.System.exit;
 
 public class MainGui extends LoginClient{
 
-    private JFrame window, MainFrame;
+    public JFrame window;
+    public JFrame MainFrame;
     private JTextField text1, text2, text3, text4, text5, text6, text7, text8, text9, text10;
     private Socket socket;
-    private String image_path;
-    private int width, height;
+    public String image_path;
+    public int width;
+    public int height;
     private JMenu system;
     private JMenuBar menubar;
     private JTextField Clientmess, Servermess;

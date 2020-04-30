@@ -17,9 +17,9 @@ import java.util.List;
 
 public class SendReceive {
 
-    public static boolean sent;
-    public static boolean sentList;
-    public static boolean received;
+    public static boolean sent = false;
+    public static boolean sentList = false;
+    public static boolean received = false;
 
     public static void sendMessage(Socket socketChannel, String message) {
         if (socketChannel != null){
@@ -28,6 +28,8 @@ public class SendReceive {
                 output = new PrintWriter(socketChannel.getOutputStream());
                 if (!message.contains("+"))
                     System.out.println("Sending: " + message);
+                else
+                    System.out.println("Sending: ****************");
                 output.write(message);
                 output.flush();
                 sent = true;
@@ -66,8 +68,7 @@ public class SendReceive {
             PrintWriter output = null;
             try {
                 output = new PrintWriter(socketChannel.getOutputStream());
-                if (!message.contains("+"))
-                    System.out.println("Sending: " + message);
+                System.out.println("Sending: " + message);
                 output.write(String.valueOf(message));
                 output.flush();
                 sentList = true;

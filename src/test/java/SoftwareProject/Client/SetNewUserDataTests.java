@@ -6,9 +6,8 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
 //+ .DATE: 29/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package ClientTests;
+package SoftwareProject.Client;
 
-import SoftwareProject.Client.SetNewUserData;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

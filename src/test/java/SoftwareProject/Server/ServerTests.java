@@ -1,4 +1,4 @@
-package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package SoftwareProject.Server;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .Project: Messaging APP+
 //+ .LANGUAGE: Java +
 //+ .FRAMEWORK: Maven +
@@ -82,9 +82,8 @@ public class ServerTests {
     @Order(4)
     public void TestSocketBound() {
 //        Server server = new Server(socketChannel,"localhost",3000);
-        //server.SocketBound(socketChannel,"localhost",3000);
-        assertTrue(server.getBound());
-
+        server.SocketBound(socketChannel,"localhost",3000);
+        assertTrue(server.isBound());
 
     }
     @DisplayName("Socket closes")
@@ -102,16 +101,6 @@ public class ServerTests {
 //        Server server = new Server(socketChannel,"localhost",3000);
         server.NewThread();
         assertTrue(server.isStarted());
-    }
-    @DisplayName("Thread Stop")
-    @Test
-    @Order(5)
-    public void TestThreadStop() {
-//        Server server = new Server(socketChannel,"localhost",3000);
-//        server.NewThread();
-        server.StopThread();
-        assertFalse(ClientHandler.isThreadrun());
-
     }
 }
 

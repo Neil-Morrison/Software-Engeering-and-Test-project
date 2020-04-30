@@ -6,9 +6,8 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
 //+ .DATE: 30/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package ClientTests;
+package SoftwareProject.Client;
 
-import SoftwareProject.Client.SendReceive;
 import org.junit.jupiter.api.*;
 import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.assertTrue;

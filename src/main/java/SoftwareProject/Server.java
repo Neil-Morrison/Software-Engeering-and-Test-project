@@ -36,6 +36,7 @@ public class Server {
     private Thread t;
 
 
+    public Server(){}
     public Server(ServerSocket sock, String host, int port) {
         if (!sock.isClosed()) {
             this.socket = sock;
@@ -57,22 +58,26 @@ public class Server {
         this.bound = false;
         this.started = false;
         this.stopped = false;
-        try {
-            socket.bind(new InetSocketAddress(host, port));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            socket.bind(new InetSocketAddress(host, port));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void Start() {
-        ServerSocket s = null;
+        //ServerSocket s = null;
         try {
             SocketOpen(portnum);
-
+            try {
+            socket.bind(new InetSocketAddress(host, portnum));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
             System.out.println("Waiting for Client ...\r\n");
             while (running) {
-                incomingsocket = s.accept();
-                System.out.println("New Socket: " + s.toString());
+                incomingsocket = socket.accept();
+                System.out.println("New Socket: " + socket.toString());
                 NewThread();
             }
         } catch (Exception ex) {
@@ -85,6 +90,7 @@ public class Server {
     public void CheckportNumber(int port) {
         try {
             //socket = new ServerSocket(port);
+
              port = socket.getLocalPort();
             System.out.println(port);
             socket.close();
@@ -97,7 +103,8 @@ public class Server {
 
     public void SocketOpen(int port) {
         try {
-            socket = new ServerSocket(port);
+            socket = new ServerSocket();
+//            socket.bind(new InetSocketAddress(port));
             socketOpen = true;
         } catch (IOException e) {
             System.out.println(e);

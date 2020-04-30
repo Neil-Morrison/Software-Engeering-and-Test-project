@@ -4,7 +4,7 @@
 //+ .FRAMEWORK: Maven                                                  +
 //+ .AUTHOR: Neil Morrison                                             +
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
-//+ .DATE: 27/04/2020                                                  +
+//+ .DATE: 30/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject.Client;
 
@@ -17,42 +17,66 @@ import java.util.List;
 
 public class SendReceive {
 
-    public static void sendMessage(Socket socketChannel, String message) {
-        PrintWriter output = null;
-        try {
-            output = new PrintWriter(socketChannel.getOutputStream());
-            if (!message.contains("+"))
-                System.out.println("Sending: " + message);
-            output.write(message);
-            output.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static boolean sent;
+    public static boolean sentList;
+    public static boolean received;
 
+    public static void sendMessage(Socket socketChannel, String message) {
+        if (socketChannel != null){
+            PrintWriter output = null;
+            try {
+                output = new PrintWriter(socketChannel.getOutputStream());
+                if (!message.contains("+"))
+                    System.out.println("Sending: " + message);
+                output.write(message);
+                output.flush();
+                sent = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new IllegalArgumentException("There was a problem sending message from Client");
+            }
+        }
+        else
+            throw new IllegalArgumentException("The Socket Cannot be null");
     }
 
     public static String receiveMessage(Socket socketChannel) {
-        BufferedReader input = null;
-        try {
-            input = new BufferedReader(new InputStreamReader(socketChannel.getInputStream()));
-            String message = input.readLine();
-            System.out.println("Receiving: " + message);
-            return message;
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (socketChannel != null) {
+            BufferedReader input = null;
+            try {
+                input = new BufferedReader(new InputStreamReader(socketChannel.getInputStream()));
+                String message = input.readLine();
+                System.out.println("Receiving: " + message);
+                if (message != null) {
+                    received = true;
+                    return message;
+                }else
+                    throw new IllegalArgumentException("The message received was null");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new IllegalArgumentException("There was a problem receiving message from server");
+            }
         }
-        return null;
+        else
+            throw new IllegalArgumentException("The Socket Cannot be null");
     }
     public static void sendList(Socket socketChannel, List<String> message) {
-        PrintWriter output = null;
-        try {
-            output = new PrintWriter(socketChannel.getOutputStream());
-            if (!message.contains("+"))
-                System.out.println("Sending: " + message);
-            output.write(String.valueOf(message));
-            output.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (socketChannel != null) {
+            PrintWriter output = null;
+            try {
+                output = new PrintWriter(socketChannel.getOutputStream());
+                if (!message.contains("+"))
+                    System.out.println("Sending: " + message);
+                output.write(String.valueOf(message));
+                output.flush();
+                sentList = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new IllegalArgumentException("There was a problem sending list from server");
+            }
         }
+        else
+            throw new IllegalArgumentException("The Socket Cannot be null");
     }
 }

@@ -1,4 +1,4 @@
-package SoftwareProject;
+package SoftwareProject.Server;
 
 import SoftwareProject.Server.Server;
 

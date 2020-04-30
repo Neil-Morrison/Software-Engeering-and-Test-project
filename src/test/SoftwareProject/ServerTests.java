@@ -7,6 +7,8 @@ package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .DATE: 23/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+import SoftwareProject.Server.ClientHandler;
+import SoftwareProject.Server.Server;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;

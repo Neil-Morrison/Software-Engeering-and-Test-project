@@ -6,6 +6,8 @@ package SoftwareProject;//++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 24/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+import SoftwareProject.Server.ClientHandler;
+import SoftwareProject.Server.Server;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;

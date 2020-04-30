@@ -8,6 +8,8 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject;
 
+import SoftwareProject.Server.Connector;
+import SoftwareProject.Server.User;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,5 +1,7 @@
 package SoftwareProject;
 
+import SoftwareProject.Server.Server;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 

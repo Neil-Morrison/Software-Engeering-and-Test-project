@@ -6,13 +6,12 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 23/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject;
+package SoftwareProject.Server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
 

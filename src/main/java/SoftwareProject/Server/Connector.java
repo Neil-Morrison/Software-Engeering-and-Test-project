@@ -6,7 +6,7 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 27/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject;
+package SoftwareProject.Server;
 
 import java.sql.*;
 
@@ -22,8 +22,6 @@ public class Connector {
                             "VALUES ( ? , ? ,?,?);" );
             sqlFind = connection.prepareStatement(
                     "SELECT * from users WHERE users.name = ? ;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-
     }
     private void connect() throws Exception
     {

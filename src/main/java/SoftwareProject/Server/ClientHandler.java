@@ -6,15 +6,10 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology +
 //+ .DATE: 24/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject;
+package SoftwareProject.Server;
 
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.SocketChannel;
 import java.util.Scanner;
 
 public class ClientHandler extends Thread implements Runnable {

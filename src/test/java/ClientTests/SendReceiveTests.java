@@ -11,11 +11,6 @@ package ClientTests;
 import SoftwareProject.Client.SendReceive;
 import org.junit.jupiter.api.*;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.List;
-
-import static SoftwareProject.Client.SendReceive.sentList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SendReceiveTests {
@@ -58,14 +53,5 @@ public class SendReceiveTests {
     void TestReceivingMessage() {
         SendReceive.receiveMessage(socket);
         assertTrue(SendReceive.received);
-    }
-
-    @DisplayName("Sending List")
-    @Test
-    @Order(3)
-    void TestReceivingList() {
-        List<String> testing = Arrays.asList("Thomas", "Denis", "Neil");
-        SendReceive.sendList(socket, testing);
-        assertTrue(sentList);
     }
 }

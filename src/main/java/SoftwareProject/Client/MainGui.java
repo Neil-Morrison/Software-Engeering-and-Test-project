@@ -10,8 +10,7 @@ package SoftwareProject.Client;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.net.Socket;
 
@@ -20,15 +19,20 @@ import static java.lang.System.exit;
 
 public class MainGui extends LoginClient{
 
-    private JFrame window, MainFrame;
-    private JTextField text1, text2, text3, text4, text5, text6, text7, text8, text9, text10;
+    public JFrame window;
+    public JFrame MainFrame;
     private Socket socket;
-    private String image_path;
-    private int width, height;
+    public String image_path;
+    public int width;
+    public int height;
     private JMenu system;
     private JMenuBar menubar;
-    private JTextField Clientmess, Servermess;
+    private JTextField Clientmess;
     public static Action AddUser, Group_info, Logout;
+    private int clientCount = -1;
+    static JTextPane textArea;
+    Action action;
+    JButton SendButton;
 
 
     public MainGui(JFrame frame, JFrame mainFrame, Socket socket, int width, int height, String path) {
@@ -65,6 +69,7 @@ public class MainGui extends LoginClient{
         setSize();
         SetupFields();
         StartGui();
+        new MessageHandler(MainFrame, socket);
         MainFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -77,18 +82,48 @@ public class MainGui extends LoginClient{
                 }
             }
         });
+        Clientmess.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                Clientmess.setText("");
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                System.out.println("Lost");
+            }
+        });
+        SendButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String message = "message+" + Clientmess.getText() + "+" +  LoginClient.Clientname + "\n";
+                System.out.println(message);
+                messageArea(message);
+                SendReceive.sendMessage(socket, message);
+                Clientmess.setText("Enter Message!");
+            }
+        });
     }
 
     public void SetLoginFalse(){
         window.setVisible(false);
     }
 
-    public void StartGui(){
+    public void StartGui() {
         background = new JLabel(new ImageIcon(image_path));
-        background.add(Clientmess);
+        ImageIcon arrow = new ImageIcon("src\\main\\resources\\pictures\\sendButton.png");
+        SendButton = new JButton(arrow);
         setupMenu();
-        MainFrame.getContentPane().add(background);
+        textArea = new JTextPane();
+        JScrollPane scroll = new JScrollPane (textArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        textArea.add(background);
+        textArea.setSize(new Dimension(300,240));
+        SendButton.setBounds(315, 510, 50, 30);
+        textArea.add(Clientmess);
+        textArea.add(SendButton);
         MainFrame.getContentPane().add(BorderLayout.NORTH, menubar);
+        MainFrame.getContentPane().add(BorderLayout.CENTER, scroll);
+        Clientmess.addActionListener( action );
+        MainFrame.setResizable(false);
         MainFrame.setVisible(true);
     }
 
@@ -110,8 +145,31 @@ public class MainGui extends LoginClient{
 
     public void SetupFields(){
         Clientmess = new JTextField();
-        Servermess = new JTextField();
-        Clientmess.setBounds(15, 565, 300, 35);
+        Clientmess.setBounds(5, 510, 310, 32);
         Clientmess.setBackground(orange);
     }
+    public void messageArea(String message) {
+        String[] mess = message.split("\\+");
+        JLabel name = new JLabel();
+        clientCount = clientCount + 1;
+        System.out.println(clientCount);
+        if (clientCount == 0){
+            name.setText(mess[1]);
+            name.setBounds(5,  6, 310, 10);
+            textArea.add(name);
+            MainFrame.repaint();
+        }else if(clientCount == 1){
+            name.setText(mess[1]);
+            name.setBounds(5, 43, 310, 10);
+            textArea.add(name);
+            MainFrame.repaint();
+        }else{
+            int count = clientCount * 20;
+            name.setText(mess[1]);
+            name.setBounds(5, count * 2, 310, 10);
+            textArea.add(name);
+            MainFrame.repaint();
+        }
+    }
 }
+

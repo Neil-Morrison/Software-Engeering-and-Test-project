@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.List;
+
 
 public class SendReceive {
 
-    public static boolean sent;
-    public static boolean sentList;
-    public static boolean received;
+    public static boolean sent = false;
+    public static boolean sentList = false;
+    public static boolean received = false;
 
     public static void sendMessage(Socket socketChannel, String message) {
         if (socketChannel != null){
@@ -28,7 +28,9 @@ public class SendReceive {
                 output = new PrintWriter(socketChannel.getOutputStream());
                 if (!message.contains("+"))
                     System.out.println("Sending: " + message);
-                output.write(message);
+                else
+                    System.out.println("Sending: ****************");
+                output.write(message + "\n");
                 output.flush();
                 sent = true;
             } catch (IOException e) {
@@ -56,24 +58,6 @@ public class SendReceive {
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new IllegalArgumentException("There was a problem receiving message from server");
-            }
-        }
-        else
-            throw new IllegalArgumentException("The Socket Cannot be null");
-    }
-    public static void sendList(Socket socketChannel, List<String> message) {
-        if (socketChannel != null) {
-            PrintWriter output = null;
-            try {
-                output = new PrintWriter(socketChannel.getOutputStream());
-                if (!message.contains("+"))
-                    System.out.println("Sending: " + message);
-                output.write(String.valueOf(message));
-                output.flush();
-                sentList = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new IllegalArgumentException("There was a problem sending list from server");
             }
         }
         else

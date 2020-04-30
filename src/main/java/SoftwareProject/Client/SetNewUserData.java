@@ -8,21 +8,45 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject.Client;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SetNewUserData {
 
-    private List<String> UserData = new ArrayList<String>();
+    String user;
+    String pass;
+    String email;
+    String phone;
 
-    public void setUserData(String userData) {
-        if (userData !=null)
-            UserData.add(userData);
+    public SetNewUserData(String user, String pass, String email, String phone){
+        if (user != null)
+            this.user = user;
         else
-            throw new IllegalArgumentException("Data Cannot be null");
+            throw new IllegalArgumentException("The user name cannot be null");
+        if (pass.length() > 7)
+            this.pass = pass;
+        else
+            throw new IllegalArgumentException("The password must be at least 7 digits long");
+        if (email.contains("@"))
+            this.email = email;
+        else
+            throw new IllegalArgumentException("The email must be type email");
+        if (phone.length() == 9)
+            this.phone = phone;
+        else
+            throw new IllegalArgumentException("The phone number must be 9 digits");
     }
 
-    public List<String> getUserData() {
-        return UserData;
+    public String getUser() {
+        return user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

@@ -10,11 +10,8 @@ package ClientTests;
 
 import SoftwareProject.Client.SetNewUserData;
 import org.junit.jupiter.api.*;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class SetNewUserDataTests {
@@ -35,27 +32,50 @@ public class SetNewUserDataTests {
     void init(TestInfo testinfo, TestReporter testreporter){
         testreporter.publishEntry(("Testing " + testinfo.getDisplayName()));
     }
-    @BeforeEach
-    void Setup(){
-      data = new SetNewUserData();
-    }
-    @DisplayName("Adding Data To List")
+
+    @DisplayName("Constructor")
     @Test
     @Order(1)
-    void TestAddingDataToList() {
-        data.setUserData("Denise");
-        data.setUserData("Thomaseena");
-        List<String> userdata = data.getUserData();
-        assertEquals(2, userdata.size());
+    void TestConstructor() {
+        data = new SetNewUserData("Neil", "888888888", "neil@gmail.com", "873564526");
+        assertEquals("Neil", data.getUser());
+        assertEquals("888888888", data.getPass());
+        assertEquals("neil@gmail.com", data.getEmail());
+        assertEquals("873564526", data.getPhone());
     }
-    @DisplayName("Names are correct")
+    @DisplayName("setName")
     @Test
     @Order(2)
-    void TestCorrectstring() {
-        List<String> testing = Arrays.asList("Thomas", "Denis", "Neil");
-        data.setUserData("Thomas");
-        data.setUserData("Denis");
-        data.setUserData("Neil");
-        assertEquals(testing, data.getUserData());
+    void TestUserName() {
+        final String error1 = "The user name cannot be null";
+        Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new SetNewUserData(null,"888888888", "neil@gmail.com", "873564526"));
+        assertEquals(error1, titleException.getMessage());
+    }
+
+    @DisplayName("setPassword")
+    @Test
+    @Order(3)
+    void TestPassword() {
+        final String error1 = "The password must be at least 7 digits long";
+        Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new SetNewUserData("Neil","34534", "neil@gmail.com", "873564526"));
+        assertEquals(error1, titleException.getMessage());
+    }
+
+    @DisplayName("setEmail")
+    @Test
+    @Order(3)
+    void TestEmail() {
+        final String error1 = "The email must be type email";
+        Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new SetNewUserData("Neil","888888888", "neilgmail.com", "873564526"));
+        assertEquals(error1, titleException.getMessage());
+    }
+
+    @DisplayName("setPhone")
+    @Test
+    @Order(3)
+    void TestPhone() {
+        final String error1 = "The phone number must be 9 digits";
+        Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new SetNewUserData("Neil","888888888", "neil@gmail.com", "3434"));
+        assertEquals(error1, titleException.getMessage());
     }
 }

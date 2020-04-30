@@ -20,6 +20,7 @@ import static java.lang.System.exit;
 public class LoginClient extends GuiHolder{
 
     private JFrame Mainframe;
+    static String Clientname;
 
     public LoginClient(JFrame frame, JFrame Mainframe, int frame_width, int frame_height, String path) {
         if (frame != null)
@@ -61,14 +62,15 @@ public class LoginClient extends GuiHolder{
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                connect("localhost", 6000);
+                connect("34.247.38.113", 6000);
                 String username = userFeild.getText();
                 String pass = passFeild.getText();
-                String message = "login+" + username + "+" + pass+"\n";
+                String message = "login+" + username + "+" + pass;
                 SendReceive.sendMessage(socket, message);
                 String rec = SendReceive.receiveMessage(socket);
                 String image_path = "src\\main\\resources\\pictures\\hero.png";
                 if (rec.equals("Access Granted")){
+                    Clientname = username;
                     new MainGui(window, Mainframe, socket, width, height, image_path).run();
                 } else{
                     JOptionPane.showConfirmDialog(window,"Incorrect Details", "Details", -1);
@@ -88,13 +90,13 @@ public class LoginClient extends GuiHolder{
         window.setVisible(true);
     }
     public void connect(String ServerAddress, int ServerPort) {
-//        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
-//        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
-//        if (ServerAddress.matches(pattern)){
+        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
+        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
+        if (ServerAddress.matches(pattern)){
             serverIp = ServerAddress;
-//        }else{
-//            throw new IllegalArgumentException("This doesn't match ip address pattern");
-//        }
+        }else{
+            throw new IllegalArgumentException("This doesn't match ip address pattern");
+        }
         if (ServerPort > 0 && ServerPort < 65000){
             portnum = ServerPort;
         }else{
@@ -133,8 +135,8 @@ public class LoginClient extends GuiHolder{
         passText = new JLabel("Password");
         title = new JLabel("Login Page");
         title.setForeground(orange);
-//        Font font = getFont("Times New Roman", 25);
-//        title.setFont(font);
+        Font font = getFont("Times New Roman", 25);
+        title.setFont(font);
         title.setBounds(120,50, 150,50);
         userText.setBounds(50, 150, 60, 35);
         userFeild.setBounds(50, 180, 300, 35);
@@ -164,7 +166,6 @@ public class LoginClient extends GuiHolder{
         GraphicsEnvironment g= null;
         g=GraphicsEnvironment.getLocalGraphicsEnvironment();
         String []fonts=g.getAvailableFontFamilyNames();
-        System.out.println(font);
         for (int i = 0; i < fonts.length; i++) {
             if((fonts[i]).equals(font)){
                 return true;

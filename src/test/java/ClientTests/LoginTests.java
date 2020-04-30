@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTests {
 
-    private JFrame frame;
+    private JFrame frame, MainFrame;
     private String path;
 
     @BeforeAll
@@ -42,18 +42,19 @@ public class LoginTests {
     @Test
     @Order(1)
     void TestConstructor() {
-        LoginClient login = new LoginClient(frame, 400, 600, path);
+        LoginClient login = new LoginClient(frame, MainFrame, 400, 600, path);
         assertEquals(frame, login.getWindow());
         assertEquals(400, login.getWidth());
         assertEquals(600, login.getHeight());
         assertEquals(path, login.getImage());
     }
-    @DisplayName("Testing set button name")
+    @DisplayName("set button name")
     @Test
     @Order(2)
     void TestButton() {
-        LoginClient login = new LoginClient(frame, 400, 600, path);
+        LoginClient login = new LoginClient(frame, MainFrame, 400, 600, path);
         login.setButtonName("Login");
+        assertEquals("Login", login.getButtonName());
         assertTrue(login.buttonName);
     }
 
@@ -62,7 +63,7 @@ public class LoginTests {
     @Test
     @Order(3)
     void TestGetFont() {
-        LoginClient login = new LoginClient(frame, 400, 600, path);
+        LoginClient login = new LoginClient(frame, MainFrame,400, 600, path);
         login.getFont("Times New Roman", 25);
         assertEquals("Times New Roman", login.getFontText());
         assertEquals(25, login.getFont_size());
@@ -72,7 +73,7 @@ public class LoginTests {
     @Test
     @Order(4)
     void TestConnect() {
-        LoginClient login = new LoginClient(frame, 400, 600, path);
+        LoginClient login = new LoginClient(frame, MainFrame,400,  600, path);
         login.connect("192.168.1.13", 2003);
         assertEquals("192.168.1.13", login.getServerIp());
         assertEquals(2003, login.getPortnum());
@@ -83,7 +84,7 @@ public class LoginTests {
     @Test
     @Order(5)
     void TestDisconnect() {
-          LoginClient login = new LoginClient(frame, 400, 600, path);
+          LoginClient login = new LoginClient(frame, MainFrame, 400, 600, path);
           login.disconnect();
           assertTrue(login.Sockclosed);
     }

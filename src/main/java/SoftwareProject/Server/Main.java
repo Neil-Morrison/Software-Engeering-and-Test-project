@@ -1,4 +1,4 @@
-package SoftwareProject.Server;
+package SoftwareProject;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,5 +11,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //new Server(,"localhost",6000).Start();
     }
 }

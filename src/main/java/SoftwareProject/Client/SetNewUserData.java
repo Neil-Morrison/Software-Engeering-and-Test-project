@@ -4,21 +4,25 @@
 //+ .FRAMEWORK: Maven                                                  +
 //+ .AUTHOR: Neil Morrison                                             +
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
-//+ .DATE: 27/04/2020                                                  +
+//+ .DATE: 29/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject.Client;
 
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
+public class SetNewUserData {
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Messaging App");
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        String path = "src\\main\\resources\\pictures\\background.png";
-        new LoginClient(frame, 400, 600, path).run();
+    private List<String> UserData = new ArrayList<String>();
 
+    public void setUserData(String userData) {
+        if (userData !=null)
+            UserData.add(userData);
+        else
+            throw new IllegalArgumentException("Data Cannot be null");
     }
 
+    public List<String> getUserData() {
+        return UserData;
+    }
 }

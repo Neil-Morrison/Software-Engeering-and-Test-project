@@ -19,29 +19,29 @@ import static java.lang.System.exit;
 
 public class LoginClient extends GuiHolder{
 
-    public LoginClient(JFrame frame, int frame_width, int frame_height, String path) {
-        if (frame != null) {
+    private JFrame Mainframe;
+
+    public LoginClient(JFrame frame, JFrame Mainframe, int frame_width, int frame_height, String path) {
+        if (frame != null)
             window = frame;
-        } else {
+        else
             throw new IllegalArgumentException("The JFrame must be swing object not null");
-        }
         File tempFile = new File(path);
-        if (tempFile.exists()) {
+        if (tempFile.exists())
             image = path;
-        } else {
-            throw new IllegalArgumentException("The path for the file does not exist");
-        }
-        if (!(frame_width > 400) && !(frame_width < 399)) {
+        else
+            throw new IllegalArgumentException("Path does not exist for the background image for Login Frame");
+        if (!(frame_width > 400) && !(frame_width < 399))
             width = frame_width;
-        } else {
+        else
             throw new IllegalArgumentException("Frame width must be 400");
-        }
-        if (!(frame_height > 600) && !(frame_height < 599)) {
+        if (!(frame_height > 600) && !(frame_height < 599))
             height = frame_height;
-        } else {
+        else
             throw new IllegalArgumentException("Frame height must be 600");
-        }
+        this.Mainframe = Mainframe;
     }
+    public LoginClient() { }
     public void run(){
         setSize();
         setUserFields();
@@ -53,13 +53,13 @@ public class LoginClient extends GuiHolder{
                 super.windowClosing(e);
                 int check = JOptionPane.showConfirmDialog(window,"Are you sure you want to exit", "Exit", -1);
                 if (check == 0){
-                    disconnect();
+                    if (socket != null)
+                        disconnect();
                     exit(0);
                 }
             }
         });
         login.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 connect("localhost", 6000);
                 String username = userFeild.getText();
@@ -67,8 +67,9 @@ public class LoginClient extends GuiHolder{
                 String message = "login+" + username + "+" + pass+"\n";
                 SendReceive.sendMessage(socket, message);
                 String rec = SendReceive.receiveMessage(socket);
+                String image_path = "src\\main\\resources\\pictures\\hero.png";
                 if (rec.equals("Access Granted")){
-                    System.out.println("welcome");
+                    new MainGui(window, Mainframe, socket, width, height, image_path).run();
                 } else{
                     JOptionPane.showConfirmDialog(window,"Incorrect Details", "Details", -1);
                 }
@@ -106,7 +107,6 @@ public class LoginClient extends GuiHolder{
             throw new IllegalArgumentException("A problem occurred when trying to open the SocketChannel");
         }
     }
-
     public void disconnect() {
         try {
             socket.close();
@@ -116,10 +116,11 @@ public class LoginClient extends GuiHolder{
         }
     }
     public void setButtonName(String name){
+        ButtonName = name;
         login = new Button();
         login.setBounds(150,400,100,30);
         if (name.equals("Login")){
-            login.setLabel(name);
+            login.setLabel(ButtonName);
             buttonName = true;
         }else{
             throw new IllegalArgumentException("Name should be Login");
@@ -144,7 +145,6 @@ public class LoginClient extends GuiHolder{
     }
     public void setSize(){
         window.setSize(this.width, this.height);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public Font getFont(String font, int size){
         if (findfont(font)){
@@ -171,5 +171,9 @@ public class LoginClient extends GuiHolder{
             }
         }
         return false;
+    }
+    public static void returned(){
+        userFeild.setText("");
+        passFeild.setText("");
     }
 }

@@ -13,11 +13,14 @@ import javax.swing.JFrame;
 public class Main {
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Messaging App");
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        JFrame LoginFrame = new JFrame("Messaging App");
+        JFrame MainFrame = new JFrame("Messaging App");
+        LoginFrame.setResizable(false);
+        MainFrame.setResizable(false);
+        LoginFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        MainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         String path = "src\\main\\resources\\pictures\\background.png";
-        new LoginClient(frame, 400, 600, path).run();
+        new LoginClient(LoginFrame, MainFrame, 400, 600, path).run();
 
     }
 

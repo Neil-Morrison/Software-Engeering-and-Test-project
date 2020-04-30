@@ -1,3 +1,11 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .Project: Messaging APP                                            +
+//+ .LANGUAGE: Java                                                    +
+//+ .FRAMEWORK: Maven                                                  +
+//+ .AUTHOR: Neil Morrison                                             +
+//+ .COLLEGE: Galway-Mayo institute of Technology                      +
+//+ .DATE: 28/04/2020                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject.Client;
 
 import javax.swing.*;
@@ -13,10 +21,9 @@ public class GuiHolder {
     Button login;
     JLabel background;
     String image;
-    private String ButtonName;
+    String ButtonName;
     boolean connection;
     public boolean Sockclosed;
-    private boolean text_font;
     public boolean buttonName;
     String serverIp;
     String fontText;
@@ -70,16 +77,10 @@ public class GuiHolder {
         return ButtonName;
     }
 
-    public boolean isConnection() {
-        return connection;
-    }
+    public boolean isConnection() { return connection; }
 
     public boolean isSockclosed() {
         return Sockclosed;
-    }
-
-    public boolean isText_font() {
-        return text_font;
     }
 
     public boolean isButtonName() {

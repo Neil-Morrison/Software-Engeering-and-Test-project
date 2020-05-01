@@ -27,7 +27,7 @@ public class NewUserGui extends JFrame{
     }
     public void run(){
         final JFrame smallwindow = new JFrame("Add User");
-        String path = "src\\main\\resources\\pictures\\hero.png";
+        String path = "src/main/resources/pictures/hero.png";
         background = new JLabel(new ImageIcon(path));
         smallwindow.setResizable(false);
         smallwindow.setSize(300, 350);

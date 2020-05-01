@@ -13,15 +13,21 @@ import org.junit.jupiter.api.*;
 import java.io.IOException;
 import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class SendReceiveTests {
 
-    private Socket socket;
+    private static Socket socket;
     private SendReceive sendreceive;
 
     @BeforeAll
     static void startTests(){
         System.out.println("Beginning Tests for SendReceive Message");
+        socket = new Socket();
+        try {
+            socket = new Socket("34.240.13.191", 6000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @AfterAll
@@ -34,20 +40,11 @@ public class SendReceiveTests {
         testreporter.publishEntry(("Testing " + testinfo.getDisplayName()));
     }
 
-    @BeforeEach
-    void Setup(){
-        socket = new Socket();
-        try {
-            socket = new Socket("34.255.98.100", 6000);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @DisplayName("Sending Message")
     @Test
     @Order(1)
-    void TestSendingMessage() {
+    void TestASendingMessage() {
         SendReceive.sendMessage(socket, "quit+server");
         assertTrue(SendReceive.sent);
     }
@@ -55,7 +52,7 @@ public class SendReceiveTests {
     @DisplayName("Receiving Message")
     @Test
     @Order(2)
-    void TestReceivingMessage() {
+    void TestBReceivingMessage() {
         SendReceive.receiveMessage(socket);
         assertTrue(SendReceive.received);
     }

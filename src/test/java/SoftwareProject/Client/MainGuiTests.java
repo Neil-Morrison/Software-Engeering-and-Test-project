@@ -41,7 +41,7 @@ public class MainGuiTests {
         frame = new JFrame("Messaging App");
         MainFrame = new JFrame("Messaging App");
         socket = new Socket();
-        path = "src\\main\\resources\\pictures\\hero.png";
+        path = "src/main/resources/pictures/hero.png";
     }
 
     @DisplayName("Constructor for Main Page")

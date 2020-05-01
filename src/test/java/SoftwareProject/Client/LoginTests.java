@@ -35,7 +35,7 @@ public class LoginTests {
     @BeforeEach
     void Setup(){
         frame = new JFrame("Messaging App");
-        path = "src\\main\\resources\\pictures\\background.png";
+        path = "src/main/resources/pictures/background.png";
     }
     @DisplayName("Constructor for login page")
     @Test
@@ -73,8 +73,8 @@ public class LoginTests {
     @Order(4)
     void TestConnect() {
         LoginClient login = new LoginClient(frame, MainFrame,400,  600, path);
-        login.connect("34.255.98.100", 6000);
-        assertEquals("34.255.98.100", login.getServerIp());
+        login.connect("34.240.13.191", 6000);
+        assertEquals("34.240.13.191", login.getServerIp());
         assertEquals(6000, login.getPortnum());
         assertTrue(login.isConnection());
     }

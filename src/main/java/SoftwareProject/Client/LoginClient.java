@@ -62,13 +62,13 @@ public class LoginClient extends GuiHolder{
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                connect("34.255.98.100", 6000);
+                connect("34.240.13.191", 6000);
                 String username = userFeild.getText();
                 String pass = passFeild.getText();
                 String message = "login+" + username + "+" + pass;
                 SendReceive.sendMessage(socket, message);
                 String rec = SendReceive.receiveMessage(socket);
-                String image_path = "src\\main\\resources\\pictures\\hero.png";
+                String image_path = "src/main/resources/pictures/hero.png";
                 if (rec.equals("Access Granted")){
                     Clientname = username;
                     new MainGui(window, Mainframe, socket, width, height, image_path).run();
@@ -90,13 +90,13 @@ public class LoginClient extends GuiHolder{
         window.setVisible(true);
     }
     public void connect(String ServerAddress, int ServerPort) {
-        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
-        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
-        if (ServerAddress.matches(pattern)){
+        //String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
+        //String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
+        //if (ServerAddress.matches(pattern)){
             serverIp = ServerAddress;
-        }else{
-            throw new IllegalArgumentException("This doesn't match ip address pattern");
-        }
+        //}else{
+        //   throw new IllegalArgumentException("This doesn't match ip address pattern");
+        //}
         if (ServerPort > 0 && ServerPort < 65000){
             portnum = ServerPort;
         }else{

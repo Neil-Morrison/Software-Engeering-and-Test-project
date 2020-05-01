@@ -50,10 +50,10 @@ public class MainGui extends LoginClient{
         else
             throw new IllegalArgumentException("The Socket Cannot be null");
         File tempFile = new File(path);
-        if (tempFile.exists())
+//        if (tempFile.exists())
             this.image_path = path;
-        else
-            throw new IllegalArgumentException("Path does not exist for the background image for Main Frame");
+//        else
+//            throw new IllegalArgumentException("Path does not exist for the background image for Main Frame");
         if (!(width > 400) && !(width < 399))
             this.width = width;
         else

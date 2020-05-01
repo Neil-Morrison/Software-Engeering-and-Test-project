@@ -49,6 +49,7 @@ public class ClientHandler extends Thread implements Runnable {
                             System.err.println("No response");
                             try {
                                 PassableSocket.close();
+                                clientResponse = "disconnected";
                             } catch (IOException ioException) {
                                 ioException.printStackTrace();
                             }
@@ -63,12 +64,7 @@ public class ClientHandler extends Thread implements Runnable {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        try {
-                            PassableSocket.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        running = false;
+
                     } else if(response[0].equalsIgnoreCase("message")) {
                         for (Socket sc : Server.sock) {
                             if (sc != PassableSocket) {

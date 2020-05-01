@@ -83,7 +83,7 @@ public class Connector {
 
             user = new User(name,password,email,phone);
 
-            //System.out.println(user.toString());
+            System.out.println(user.toString());
 
         }catch (Exception e){
             System.out.println(e.getMessage());

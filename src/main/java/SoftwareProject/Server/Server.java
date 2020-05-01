@@ -46,11 +46,11 @@ public class Server {
         } else {
             throw new IllegalArgumentException("the port number has to be between 1 and 65000");
         }
-        if (host.equals("localhost")) {
+//        if (host.equals("localhost")) {
             this.host = host;
-        } else {
-            throw new IllegalArgumentException("Host name must be localhost");
-        }
+//        } else {
+//            throw new IllegalArgumentException("Host name must be localhost");
+//        }
         this.closed = false;
         this.bound = false;
         this.started = false;

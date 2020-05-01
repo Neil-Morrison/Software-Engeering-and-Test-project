@@ -47,6 +47,11 @@ public class ClientHandler extends Thread implements Runnable {
                             response = clientResponse.split("\\+");
                         } catch (IOException e) {
                             System.err.println("No response");
+                            try {
+                                PassableSocket.close();
+                            } catch (IOException ioException) {
+                                ioException.printStackTrace();
+                            }
                         }
                     }
                     System.out.println(clientResponse);
@@ -68,7 +73,8 @@ public class ClientHandler extends Thread implements Runnable {
                         for (Socket sc : Server.sock) {
                             if (sc != PassableSocket) {
                                 try {
-                                    HelperMethods.sendMessage(sc, clientResponse);
+                                    HelperMethods.sendMessage(sc, clientResponse+"\n");
+                                    System.out.println("Sending message: "+clientResponse+ "\nTO: "+sc+"\nFROM: "+PassableSocket);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -87,7 +93,7 @@ public class ClientHandler extends Thread implements Runnable {
                             }
                         }else{
                             try{
-                                HelperMethods.sendMessage(PassableSocket,"Access Denied");
+                                HelperMethods.sendMessage(PassableSocket,"Access Denied\n");
                             }catch (Exception e){
                                 e.printStackTrace();
                             }

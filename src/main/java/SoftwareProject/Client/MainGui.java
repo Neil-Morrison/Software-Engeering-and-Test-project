@@ -29,7 +29,7 @@ public class MainGui extends LoginClient{
     private JMenuBar menubar;
     private JTextField Clientmess;
     public static Action AddUser, Group_info, Logout;
-    private int clientCount = -1;
+    public static int clientCount = -1;
     static JTextPane textArea;
     Action action;
     JButton SendButton;
@@ -69,7 +69,7 @@ public class MainGui extends LoginClient{
         setSize();
         SetupFields();
         StartGui();
-        new MessageHandler(MainFrame, socket);
+        new MessageHandler(MainFrame, socket).start();
         MainFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -89,7 +89,7 @@ public class MainGui extends LoginClient{
             }
             @Override
             public void focusLost(FocusEvent e) {
-                System.out.println("Lost");
+                //System.out.println("Lost");
             }
         });
         SendButton.addActionListener(new ActionListener() {
@@ -152,7 +152,7 @@ public class MainGui extends LoginClient{
         String[] mess = message.split("\\+");
         JLabel name = new JLabel();
         clientCount = clientCount + 1;
-        System.out.println(clientCount);
+        MessageHandler.ServerCount = MessageHandler.ServerCount + 1;
         if (clientCount == 0){
             name.setText(mess[1]);
             name.setBounds(5,  6, 310, 10);

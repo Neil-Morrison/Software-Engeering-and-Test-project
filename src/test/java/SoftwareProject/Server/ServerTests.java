@@ -29,7 +29,7 @@ public class ServerTests {
             e.printStackTrace();
         }
         socketChannel = socket;
-        server = new Server(socketChannel,"localhost",3000);
+        server = new Server(socketChannel,"34.255.98.100",6000);
     }
 
     @AfterAll
@@ -55,8 +55,8 @@ public class ServerTests {
     public void TestConstructor() throws IOException {
 //        Server server = new Server(socketChannel,"localhost",3000);
         assertTrue(server.isSocket());
-        assertEquals("localhost", server.getHost());
-        assertEquals(3000, server.getPortnum());
+        assertEquals("34.255.98.100", server.getHost());
+        assertEquals(6000, server.getPortnum());
     }
     @DisplayName("Check port")
     @Test
@@ -82,7 +82,7 @@ public class ServerTests {
     @Order(4)
     public void TestSocketBound() {
 //        Server server = new Server(socketChannel,"localhost",3000);
-        server.SocketBound(socketChannel,"localhost",3000);
+        server.SocketBound(socketChannel,"34.255.98.100",6000);
         assertTrue(server.isBound());
 
     }

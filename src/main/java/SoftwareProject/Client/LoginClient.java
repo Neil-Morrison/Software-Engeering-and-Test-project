@@ -62,7 +62,7 @@ public class LoginClient extends GuiHolder{
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                connect("192.168.1.13", 2003);
+                connect("34.255.98.100", 6000);
                 String username = userFeild.getText();
                 String pass = passFeild.getText();
                 String message = "login+" + username + "+" + pass;

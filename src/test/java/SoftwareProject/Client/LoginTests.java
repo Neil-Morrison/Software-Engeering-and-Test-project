@@ -73,8 +73,8 @@ public class LoginTests {
     @Order(4)
     void TestConnect() {
         LoginClient login = new LoginClient(frame, MainFrame,400,  600, path);
-        login.connect("34.247.38.113", 6000);
-        assertEquals("34.247.38.113", login.getServerIp());
+        login.connect("34.255.98.100", 6000);
+        assertEquals("34.255.98.100", login.getServerIp());
         assertEquals(6000, login.getPortnum());
         assertTrue(login.isConnection());
     }

@@ -38,7 +38,7 @@ public class SendReceiveTests {
     void Setup(){
         socket = new Socket();
         try {
-            socket = new Socket("34.247.38.113", 6000);
+            socket = new Socket("34.255.98.100", 6000);
         } catch (IOException e) {
             e.printStackTrace();
         }

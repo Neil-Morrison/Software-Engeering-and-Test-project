@@ -17,7 +17,7 @@ public class MessageHandler extends Thread implements Runnable {
     private JFrame frame;
     private Socket sock;
     volatile boolean ClientRunning;
-    private int ServerCount = -1;
+    public static int ServerCount = -1;
 
     public MessageHandler(JFrame frame, Socket socket) {
         this.frame = frame;
@@ -31,6 +31,7 @@ public class MessageHandler extends Thread implements Runnable {
             String ServerMessage = SendReceive.receiveMessage(sock);
             String[] mess = ServerMessage.split("\\+");
             String Mess_to_show = mess[2] + ": " +  mess[1];
+            MainGui.clientCount =  MainGui.clientCount + 1;
             ServerCount = ServerCount +1;
             if (ServerCount == 0){
                 ServMess.setText(Mess_to_show);

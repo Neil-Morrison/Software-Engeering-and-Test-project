@@ -59,7 +59,7 @@ public class ClientHandler extends Thread implements Runnable {
                     System.out.println(clientResponse);
                     if (response[0].equalsIgnoreCase("quit")) {
                         try {
-                            HelperMethods.sendMessage(PassableSocket, "Server terminating\r\nSocket Channel Closed");
+                            HelperMethods.sendMessage(PassableSocket, "Server terminating\n");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

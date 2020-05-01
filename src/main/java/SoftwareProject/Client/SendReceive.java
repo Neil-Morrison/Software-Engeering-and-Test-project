@@ -18,7 +18,6 @@ import java.net.Socket;
 public class SendReceive {
 
     public static boolean sent = false;
-    public static boolean sentList = false;
     public static boolean received = false;
 
     public static void sendMessage(Socket socketChannel, String message) {

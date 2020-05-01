@@ -89,7 +89,6 @@ public class MainGui extends LoginClient{
             }
             @Override
             public void focusLost(FocusEvent e) {
-                //System.out.println("Lost");
             }
         });
         SendButton.addActionListener(new ActionListener() {

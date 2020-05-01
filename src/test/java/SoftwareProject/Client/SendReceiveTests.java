@@ -9,6 +9,8 @@
 package SoftwareProject.Client;
 
 import org.junit.jupiter.api.*;
+
+import java.io.IOException;
 import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,14 +37,18 @@ public class SendReceiveTests {
     @BeforeEach
     void Setup(){
         socket = new Socket();
-        sendreceive = new SendReceive();
+        try {
+            socket = new Socket("34.247.38.113", 6000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @DisplayName("Sending Message")
     @Test
     @Order(1)
     void TestSendingMessage() {
-        SendReceive.sendMessage(socket, "Hello Server");
+        SendReceive.sendMessage(socket, "quit+server");
         assertTrue(SendReceive.sent);
     }
 

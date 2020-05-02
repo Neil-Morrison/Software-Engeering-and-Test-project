@@ -131,6 +131,9 @@ public class Server {
     public boolean getSocketOpen() {
         return socketOpen;
     }
+    public Socket getIncomingsocket(){
+        return incomingsocket;
+    }
     public int getPortnum() {
         return portnum;
     }

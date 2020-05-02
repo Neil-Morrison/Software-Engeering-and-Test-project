@@ -28,7 +28,9 @@ public class MessageHandler extends Thread implements Runnable {
     public void run() {
         while(ClientRunning){
             JLabel ServMess = new JLabel();
+            System.out.println("Receiving Message : "+sock);
             String ServerMessage = SendReceive.receiveMessage(sock);
+            System.out.println("PAssed");
             String[] mess = ServerMessage.split("\\+");
             String Mess_to_show = mess[2] + ": " +  mess[1];
             MainGui.clientCount =  MainGui.clientCount + 1;

@@ -27,7 +27,7 @@
 //
 //
 //        serverSocket = new ServerSocket();
-//        server = new Server(serverSocket,"52.210.81.93",6000);
+//        server = new Server(serverSocket,"34.254.152.109",6000);
 //        server.Start();
 //        socket = server.getIncomingsocket();
 //

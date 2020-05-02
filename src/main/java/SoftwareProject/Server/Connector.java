@@ -32,7 +32,7 @@ public class Connector {
         Class.forName( driver );
 
         // connect to database
-        connection = DriverManager.getConnection( url , "newuser", "27Ballybrit" );
+        connection = DriverManager.getConnection( url , "root", "mynewpassword" );
 
         // Require manual commit for transactions. This enables
         // the program to rollback transactions that do not

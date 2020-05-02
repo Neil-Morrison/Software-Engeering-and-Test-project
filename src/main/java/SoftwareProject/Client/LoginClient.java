@@ -62,7 +62,7 @@ public class LoginClient extends GuiHolder{
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                connect("52.210.81.93", 6000);
+                connect("34.254.152.109", 6000);
                 String username = userFeild.getText();
                 String pass = passFeild.getText();
                 String message = "login+" + username + "+" + pass;
@@ -149,11 +149,11 @@ public class LoginClient extends GuiHolder{
         window.setSize(this.width, this.height);
     }
     public Font getFont(String font, int size){
-        if (findfont(font)){
-            fontText = font;
-        } else{
-            throw new IllegalArgumentException("Font type does not exist");
-        }
+//        if (findfont(font)){
+//            fontText = font;
+//        } else{
+//            throw new IllegalArgumentException("Font type does not exist");
+//        }
         if (size > 10 && size < 30){
             font_size = size;
         }

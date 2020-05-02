@@ -24,7 +24,7 @@ public class SendReceiveTests {
         System.out.println("Beginning Tests for SendReceive Message");
         socket = new Socket();
         try {
-            socket = new Socket("34.243.151.35", 6000);
+            socket = new Socket("52.210.81.93", 6000);
         } catch (IOException e) {
             e.printStackTrace();
         }

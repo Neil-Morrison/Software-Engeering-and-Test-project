@@ -50,6 +50,7 @@ public class SendReceive {
                 System.out.println("Receiving: " + message);
                 if (message != null) {
                     received = true;
+                    System.out.println("NOT NULL");
                     return message;
                 }else
                     throw new IllegalArgumentException("The message received was null");

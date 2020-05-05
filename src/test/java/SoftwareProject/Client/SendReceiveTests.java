@@ -40,7 +40,6 @@ public class SendReceiveTests {
         testreporter.publishEntry(("Testing " + testinfo.getDisplayName()));
     }
 
-
     @DisplayName("Sending Message")
     @Test
     @Order(1)

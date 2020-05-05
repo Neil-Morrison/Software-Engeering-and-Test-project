@@ -90,13 +90,13 @@ public class LoginClient extends GuiHolder{
         window.setVisible(true);
     }
     public void connect(String ServerAddress, int ServerPort) {
-        //String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
-        //String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
-        //if (ServerAddress.matches(pattern)){
+        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
+        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
+        if (ServerAddress.matches(pattern)){
             serverIp = ServerAddress;
-        //}else{
-        //   throw new IllegalArgumentException("This doesn't match ip address pattern");
-        //}
+        }else{
+           throw new IllegalArgumentException("This doesn't match ip address pattern");
+        }
         if (ServerPort > 0 && ServerPort < 65000){
             portnum = ServerPort;
         }else{
@@ -149,11 +149,11 @@ public class LoginClient extends GuiHolder{
         window.setSize(this.width, this.height);
     }
     public Font getFont(String font, int size){
-//        if (findfont(font)){
-//            fontText = font;
-//        } else{
-//            throw new IllegalArgumentException("Font type does not exist");
-//        }
+        if (findfont(font)){
+            fontText = font;
+        } else{
+            throw new IllegalArgumentException("Font type does not exist");
+        }
         if (size > 10 && size < 30){
             font_size = size;
         }

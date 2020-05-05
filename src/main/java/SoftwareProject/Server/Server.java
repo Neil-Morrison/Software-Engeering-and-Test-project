@@ -105,7 +105,8 @@ public class Server {
             socketChannel.bind(new InetSocketAddress(host, port));
             bound = true;
         } catch (Exception e) {
-            throw new IllegalArgumentException("An error occurred when closing the socket");
+            e.printStackTrace();
+            //throw new IllegalArgumentException("An error occurred when closing the socket");
         }
     }
 

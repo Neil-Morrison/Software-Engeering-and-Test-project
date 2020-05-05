@@ -60,11 +60,11 @@ public class LoginTests {
     @Test
     @Order(3)
     void TestGetFont() {
-        LoginClient login = new LoginClient(frame, MainFrame,400, 600, path);
-        login.getFont("Times New Roman", 25);
-        assertEquals("Times New Roman", login.getFontText());
-        assertEquals(25, login.getFont_size());
-    }
+         LoginClient login = new LoginClient(frame, MainFrame,400, 600, path);
+         login.getFont("Sarai", 25);
+         assertEquals("Sarai", login.getFontText());
+         assertEquals(25, login.getFont_size());
+     }
 
     @DisplayName("Check Connection successful")
     @Test

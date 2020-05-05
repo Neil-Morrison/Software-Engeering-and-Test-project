@@ -101,19 +101,20 @@ public class MainGuiTests {
         final String error1 = "Frame height must be 600";
         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 20, path));
         assertEquals(error1, titleException.getMessage());
-    }
-
-    @DisplayName("Path for background picture")
-    @Test
-    @Order(5)
-    void TestHeightGui() {
-        final String error1 = "Path does not exist for the background image for Main Frame";
-        Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/find/picture"));
-        assertEquals(error1, titleException.getMessage());
         try {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+//     @DisplayName("Path for background picture")
+//     @Test
+//     @Order(5)
+//     void TestHeightGui() {
+//         final String error1 = "Path does not exist for the background image for Main Frame";
+//         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/find/picture"));
+//         assertEquals(error1, titleException.getMessage());
+        
+//     }
 }

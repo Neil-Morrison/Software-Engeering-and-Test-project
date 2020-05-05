@@ -56,10 +56,12 @@ public class LoginTests {
         assertEquals("Login", login.getButtonName());
         assertTrue(login.buttonName);
     }
-    @DisplayName("Font method")
-    @Test
-    @Order(3)
-    void TestGetFont() {
+
+
+     @DisplayName("Font method")
+     @Test
+     @Order(3)
+     void TestGetFont() {
          LoginClient login = new LoginClient(frame, MainFrame,400, 600, path);
          login.getFont("Sarai", 25);
          assertEquals("Sarai", login.getFontText());

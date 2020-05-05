@@ -62,7 +62,7 @@ public class LoginClient extends GuiHolder{
         });
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                connect("34.254.152.109", 6000);
+                connect("35.175.253.195", 6000);
                 String username = userFeild.getText();
                 String pass = passFeild.getText();
                 String message = "login+" + username + "+" + pass;
@@ -90,13 +90,13 @@ public class LoginClient extends GuiHolder{
         window.setVisible(true);
     }
     public void connect(String ServerAddress, int ServerPort) {
-        String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
-        String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
-        if (ServerAddress.matches(pattern)){
+        //String zeroTo255 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
+        //String pattern = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
+        //if (ServerAddress.matches(pattern)){
             serverIp = ServerAddress;
-        }else{
-           throw new IllegalArgumentException("This doesn't match ip address pattern");
-        }
+        //}else{
+        //   throw new IllegalArgumentException("This doesn't match ip address pattern");
+        //}
         if (ServerPort > 0 && ServerPort < 65000){
             portnum = ServerPort;
         }else{
@@ -135,7 +135,7 @@ public class LoginClient extends GuiHolder{
         passText = new JLabel("Password");
         title = new JLabel("Login Page");
         title.setForeground(orange);
-        Font font = getFont("Sarai", 25);
+        Font font = getFont("Times New Roman", 25);
         title.setFont(font);
         title.setBounds(120,50, 150,50);
         userText.setBounds(50, 150, 60, 35);
@@ -162,11 +162,12 @@ public class LoginClient extends GuiHolder{
         }
         return new Font(fontText, Font.BOLD, font_size);
     }
-    public boolean findfont(String font) {
+    public static boolean findfont(String font) {
         GraphicsEnvironment g= null;
         g=GraphicsEnvironment.getLocalGraphicsEnvironment();
         String []fonts=g.getAvailableFontFamilyNames();
         for (int i = 0; i < fonts.length; i++) {
+            System.out.println(fonts[i]);
             if((fonts[i]).equals(font)){
                 return true;
             }
@@ -177,4 +178,8 @@ public class LoginClient extends GuiHolder{
         userFeild.setText("");
         passFeild.setText("");
     }
+
+
+
+
 }

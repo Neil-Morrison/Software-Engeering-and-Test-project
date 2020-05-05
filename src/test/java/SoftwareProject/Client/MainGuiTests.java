@@ -10,6 +10,7 @@ package SoftwareProject.Client;
 
 import org.junit.jupiter.api.*;
 import javax.swing.*;
+import java.io.IOException;
 import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -109,9 +110,9 @@ public class MainGuiTests {
         final String error1 = "Path does not exist for the background image for Main Frame";
         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/find/picture"));
         assertEquals(error1, titleException.getMessage());
-        try{
+        try {
             socket.close();
-        }catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

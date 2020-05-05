@@ -58,15 +58,15 @@ public class LoginTests {
     }
 
 
-    @DisplayName("Font method")
-    @Test
-    @Order(3)
-    void TestGetFont() {
-        LoginClient login = new LoginClient(frame, MainFrame,400, 600, path);
-        login.getFont("Times New Roman", 25);
-        assertEquals("Times New Roman", login.getFontText());
-        assertEquals(25, login.getFont_size());
-    }
+//     @DisplayName("Font method")
+//     @Test
+//     @Order(3)
+//     void TestGetFont() {
+//         LoginClient login = new LoginClient(frame, MainFrame,400, 600, path);
+//         login.getFont("Times New Roman", 25);
+//         assertEquals("Times New Roman", login.getFontText());
+//         assertEquals(25, login.getFont_size());
+//     }
 
     @DisplayName("Check Connection successful")
     @Test

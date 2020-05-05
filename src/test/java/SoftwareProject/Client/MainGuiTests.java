@@ -101,6 +101,5 @@ public class MainGuiTests {
          final String error1 = "Frame height must be 600";
          Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/find/picture"));
          assertEquals(error1, titleException.getMessage());
-        
     }
 }

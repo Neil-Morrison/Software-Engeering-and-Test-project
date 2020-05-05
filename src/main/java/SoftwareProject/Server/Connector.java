@@ -18,21 +18,20 @@ public class Connector {
 
             connect();
             sqlInsertNew = connection.prepareStatement(
-                    "INSERT INTO users ( name, password, email, phone ) " +
-                            "VALUES ( ? , ? ,?,?);" );
+                    "INSERT INTO users ( name, password, email, phone ) VALUES ( ? , ? ,?,?);" );
             sqlFind = connection.prepareStatement(
                     "SELECT * from users WHERE users.name = ? ;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
     }
     private void connect() throws Exception
     {
-        String url = "jdbc:mysql://localhost:3306/AndroidDB";
+        String url = "jdbc:mysql://127.0.0.1:3306/AndroidDB";
         String driver = "com.mysql.cj.jdbc.Driver";
 
         // load database driver class
         Class.forName( driver );
 
         // connect to database
-        connection = DriverManager.getConnection( url , "root", "mynewpassword" );
+        connection = DriverManager.getConnection( url , "newuser", "Software2020!" );
 
         // Require manual commit for transactions. This enables
         // the program to rollback transactions that do not

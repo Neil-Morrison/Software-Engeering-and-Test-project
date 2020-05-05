@@ -109,6 +109,10 @@ public class MainGuiTests {
         final String error1 = "Path does not exist for the background image for Main Frame";
         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/find/picture"));
         assertEquals(error1, titleException.getMessage());
-        socket.close();
+        try{
+            socket.close();
+        }catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

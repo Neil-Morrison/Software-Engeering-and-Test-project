@@ -135,7 +135,7 @@ public class LoginClient extends GuiHolder{
         passText = new JLabel("Password");
         title = new JLabel("Login Page");
         title.setForeground(orange);
-        Font font = getFont("Times New Roman", 25);
+        Font font = getFont("Sarai", 25);
         title.setFont(font);
         title.setBounds(120,50, 150,50);
         userText.setBounds(50, 150, 60, 35);

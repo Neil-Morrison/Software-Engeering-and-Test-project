@@ -29,6 +29,7 @@ public class MainGuiTests {
     @AfterAll
     static void finishedTest(){
         System.out.println("Finished Tests for Main Gui");
+        socket.close();
     }
 
     @BeforeEach

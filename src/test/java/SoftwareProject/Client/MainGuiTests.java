@@ -102,5 +102,5 @@ public class MainGuiTests {
          Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/find/picture"));
          assertEquals(error1, titleException.getMessage());
         
-     }
+    }
 }

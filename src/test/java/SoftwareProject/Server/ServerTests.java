@@ -82,7 +82,7 @@ public class ServerTests {
     @Order(4)
     public void TestSocketBound() {
 //        Server server = new Server(socketChannel,"localhost",3000);
-        server.SocketBound(socketChannel,"172.31.2.109",6000);
+        server.SocketBound(socketChannel,"172.31.34.118",6000);
         assertTrue(server.isBound());
 
     }

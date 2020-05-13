@@ -6,7 +6,7 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
 //+ .DATE: 28/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject.Client;
+package SoftwareProject.Client3;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,9 +37,32 @@ public class GuiHolder {
         return window;
     }
 
+    public static JTextField getUserFeild() {
+        return userFeild;
+    }
+
+    public static JTextField getPassFeild() {
+        return passFeild;
+    }
+
+    public static JLabel getUserText() {
+        return userText;
+    }
+
+    public static JLabel getPassText() {
+        return passText;
+    }
+
+    public static JLabel getTitle() {
+        return title;
+    }
 
     public static Socket getSocket() {
         return socket;
+    }
+
+    public Button getLogin() {
+        return login;
     }
 
     public JLabel getBackground() {
@@ -55,6 +78,14 @@ public class GuiHolder {
     }
 
     public boolean isConnection() { return connection; }
+
+    public boolean isSockclosed() {
+        return Sockclosed;
+    }
+
+    public boolean isButtonName() {
+        return buttonName;
+    }
 
     public String getServerIp() {
         return serverIp;

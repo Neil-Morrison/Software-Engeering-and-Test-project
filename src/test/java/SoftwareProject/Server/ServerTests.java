@@ -1,4 +1,5 @@
-package SoftwareProject.Server;//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package SoftwareProject.Server;
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //+ .Project: Messaging APP+
 //+ .LANGUAGE: Java +
 //+ .FRAMEWORK: Maven +
@@ -77,15 +78,15 @@ public class ServerTests {
         assertTrue(server.getSocketOpen());
 
     }
-//    @DisplayName("Socket Bound")
-//    @Test
-//    @Order(4)
-//    public void TestSocketBound() {
-////        Server server = new Server(socketChannel,"localhost",3000);
-////        server.SocketBound(socketChannel,"172.31.34.118",6000);
-//        assertTrue(server.isBound());
-//
-//    }
+    @DisplayName("Socket Bound")
+    @Test
+    @Order(4)
+    public void TestSocketBound() {
+        Server server = new Server(socketChannel,"localhost",3000);
+        server.SocketBound(socketChannel,"172.31.34.118",6000);
+        assertTrue(server.isBound());
+
+    }
     @DisplayName("Socket closes")
     @Test
     @Order(5)

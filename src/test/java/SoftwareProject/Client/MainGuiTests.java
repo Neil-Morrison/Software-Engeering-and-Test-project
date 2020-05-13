@@ -10,7 +10,6 @@ package SoftwareProject.Client;
 
 import org.junit.jupiter.api.*;
 import javax.swing.*;
-import java.io.IOException;
 import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -84,22 +83,29 @@ public class MainGuiTests {
         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, null, 400, 600, path));
         assertEquals(error1, titleException.getMessage());
     }
-
-    @DisplayName("width of Gui")
+    @DisplayName("Path exists")
     @Test
     @Order(5)
+    void TestPathExists() {
+        final String error1 = "Path does not exist for the background image for Main Frame";
+        Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 600, "/wheream/I"));
+        assertEquals(error1, titleException.getMessage());
+    }
+    @DisplayName("width of Gui")
+    @Test
+    @Order(6)
     void TestWidth() {
         final String error1 = "Frame width must be 400";
         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 40, 600, path));
         assertEquals(error1, titleException.getMessage());
     }
-
-     @DisplayName("Path for background picture")
-     @Test
-     @Order(5)
-     void TestHeightGui() {
+    @DisplayName("height of gui")
+    @Test
+    @Order(7)
+    void TestHeightGui() {
          final String error1 = "Frame height must be 600";
-         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 100, "/find/picture"));
+         Exception titleException = assertThrows(IllegalArgumentException.class, ()-> new MainGui(frame, MainFrame, socket, 400, 100, path));
          assertEquals(error1, titleException.getMessage());
+
     }
 }

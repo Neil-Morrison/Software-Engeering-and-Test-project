@@ -29,7 +29,7 @@ public class ConnectorTests {
             thrown = true;
         }
 
-        assertEquals(false,thrown);
+        assertEquals(false, thrown);
     }
 
     @Test
@@ -40,6 +40,7 @@ public class ConnectorTests {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(User.class == user.getClass());
         assertEquals(User.class, user.getClass());
     }
 
@@ -47,7 +48,7 @@ public class ConnectorTests {
     public void InsertToSQL(){
         int result = 0;
         try {
-            result = new Connector().insertNewUser("Frank","1234","Frank@gmail.com",856783442L);
+            result = new Connector().insertNewUser("Frank","1234","Frank@gmail.com",856783442);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
 //+ .DATE: 27/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject.Client;
+package SoftwareProject.Client3;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ import java.net.Socket;
 import static java.awt.Color.orange;
 import static java.lang.System.exit;
 
-public class MainGui extends LoginClient{
+public class MainGui extends LoginClient {
 
     public JFrame window;
     public JFrame MainFrame;

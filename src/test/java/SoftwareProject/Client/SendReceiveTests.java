@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SendReceiveTests {
 
     private static Socket socket;
-    private SendReceive sendreceive;
 
     @BeforeAll
     static void startTests(){

@@ -6,7 +6,7 @@
 //+ .COLLEGE: Galway-Mayo institute of Technology                      +
 //+ .DATE: 29/04/2020                                                  +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-package SoftwareProject.Client;
+package SoftwareProject.Client3;
 
 
 public class SetNewUserData {

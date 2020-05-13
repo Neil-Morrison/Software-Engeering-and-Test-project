@@ -7,9 +7,6 @@
 //+ .DATE: 28/04/2020 +
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package SoftwareProject.Server;
-
-//import org.junit.Test;
-import SoftwareProject.Server.User;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -65,5 +62,30 @@ public class UserTests {
             thrown = true;
         }
         assertEquals(true,thrown);
+    }
+
+    @Test
+    public void NameGetter(){
+        User user = new User();
+        user.setName("John");
+        assertEquals("John", user.getName());
+    }
+    @Test
+    public void PasswordGetter(){
+        User user = new User();
+        user.setPassword("ABCD");
+        assertEquals("ABCD", user.getPassword());
+    }
+    @Test
+    public void EmailGetter(){
+        User user = new User();
+        user.setEmail("MAIL");
+        assertEquals("MAIL", user.getEmail());
+    }
+    @Test
+    public void PhoneGetter(){
+        User user = new User();
+        user.setPhone(858451443);
+        assertEquals(858451443, user.getPhone());
     }
 }

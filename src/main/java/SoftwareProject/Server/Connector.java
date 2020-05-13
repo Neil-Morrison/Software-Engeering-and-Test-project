@@ -24,18 +24,21 @@ public class Connector {
     }
     private void connect() throws Exception
     {
-        String url = "jdbc:mysql://127.0.0.1:3306/AndroidDB";
+        //String url = "jdbc:mysql://127.0.0.1:3306/anroiddb";
+        String url = "jdbc:mysql://localhost/anroiddb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String driver = "com.mysql.cj.jdbc.Driver";
+
 
         // load database driver class
         Class.forName( driver );
 
         // connect to database
-        connection = DriverManager.getConnection( url , "newuser", "Software2020!" );
+        connection = DriverManager.getConnection( url , "root", "12shroot" );
 
         // Require manual commit for transactions. This enables
         // the program to rollback transactions that do not
         // complete and commit transactions that complete properly.
+        System.out.println();
         connection.setAutoCommit( false );
     }
 
